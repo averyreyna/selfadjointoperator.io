@@ -1,0 +1,20 @@
+[
+  {
+    "year": "2025",
+    "company": "Company One",
+    "location": "San Francisco",
+    "role": "Software Engineer"
+  },
+  {
+    "year": "2024",
+    "company": "Company Two",
+    "location": "New York",
+    "role": "Frontend Developer"
+  },
+  {
+    "year": "2023",
+    "company": "Company Three",
+    "location": "Remote",
+    "role": "Engineering Intern"
+  }
+]

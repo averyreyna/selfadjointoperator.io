@@ -1,0 +1,98 @@
+/* ===========================
+   3D Fold Layout
+   =========================== */
+
+.all {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.wrapper3d {
+  perspective: 20vw;
+  transform-style: preserve-3d;
+}
+
+.fold {
+  overflow: hidden;
+  width: 80vw;
+  height: 80vh;
+}
+
+.foldTop {
+  transform: rotateX(-90deg);
+  transform-origin: bottom center;
+}
+
+.foldBottom {
+  transform: rotateX(90deg);
+  transform-origin: top center;
+}
+
+.foldAlign {
+  width: 80vw;
+  height: 80vh;
+}
+
+.foldBottom .foldAlign {
+  transform: translateY(-100%);
+}
+
+.foldTop .foldAlign {
+  transform: translateY(100%);
+}
+
+/* ===========================
+   Mobile Override
+   =========================== */
+
+@media (max-width: 767px) {
+  .foldTop {
+    transform: rotateX(-140deg);
+  }
+
+  .foldBottom {
+    transform: rotateX(140deg);
+  }
+}
+
+/* ===========================
+   Print: Disable 3D, Show Flat
+   =========================== */
+
+@media print {
+  .all {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+  }
+
+  .wrapper3d {
+    perspective: none;
+    transform-style: flat;
+  }
+
+  .fold {
+    width: auto;
+    height: auto;
+    overflow: visible;
+  }
+
+  .foldTop,
+  .foldBottom {
+    display: none;
+  }
+
+  .foldAlign {
+    width: auto;
+    height: auto;
+    transform: none !important;
+  }
+}

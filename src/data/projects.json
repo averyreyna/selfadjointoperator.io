@@ -1,0 +1,24 @@
+[
+  {
+    "title": "Project Alpha",
+    "url": "https://example.com/alpha",
+    "description": "A full-stack web application for managing tasks",
+    "descriptionLinks": []
+  },
+  {
+    "title": "Project Beta",
+    "url": "https://example.com/beta",
+    "description": "An open-source library featured on Product Hunt",
+    "descriptionLinks": [
+      { "text": "Product Hunt", "url": "https://producthunt.com" }
+    ]
+  },
+  {
+    "title": "Project Gamma",
+    "url": "https://example.com/gamma",
+    "description": "A creative coding experiment built with Three.js",
+    "descriptionLinks": [
+      { "text": "Three.js", "url": "https://threejs.org" }
+    ]
+  }
+]

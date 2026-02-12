@@ -1,0 +1,14 @@
+{
+  "name": "Your Name",
+  "tagline": "Your Title — A brief description of what you do",
+  "email": "your@email.com",
+  "socialLinks": [
+    { "label": "github.com/yourname", "url": "https://github.com/yourname" },
+    { "label": "linkedin.com/in/yourname", "url": "https://linkedin.com/in/yourname" }
+  ],
+  "footerLinks": [
+    { "label": "your@email.com", "url": "mailto:your@email.com" },
+    { "label": "github.com/yourname", "url": "https://github.com/yourname" },
+    { "label": "linkedin.com/in/yourname", "url": "https://linkedin.com/in/yourname" }
+  ]
+}

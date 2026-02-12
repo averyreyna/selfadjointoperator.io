@@ -1,0 +1,25 @@
+[
+  {
+    "year": "2024",
+    "title": "Archive Project One",
+    "url": "https://example.com/archive1",
+    "description": "A data visualization dashboard for climate research",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2023",
+    "title": "Archive Project Two",
+    "url": "https://example.com/archive2",
+    "description": "A collaborative art tool built during a hackathon",
+    "descriptionLinks": [
+      { "text": "hackathon", "url": "https://example.com/hackathon" }
+    ]
+  },
+  {
+    "year": "2022",
+    "title": "Archive Project Three",
+    "url": "https://example.com/archive3",
+    "description": "An experimental music sequencer in the browser",
+    "descriptionLinks": []
+  }
+]
