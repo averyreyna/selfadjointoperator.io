@@ -86,11 +86,7 @@ function Content() {
           </Section>
 
           <Section title="Education">
-            <article>
-              <div>
-                <h3>{education.degree} — <br />{education.school}</h3>
-              </div>
-            </article>
+            <EntryList entries={education} type="archive" />
           </Section>
 
           <Section title="Things I Like">

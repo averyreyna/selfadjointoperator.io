@@ -1,14 +1,14 @@
 {
-  "name": "Your Name",
-  "tagline": "Your Title — A brief description of what you do",
-  "email": "your@email.com",
+  "name": "Avery Reyna",
+  "tagline": "Software Designer — Making software construction more accessible",
+  "email": "avery.reyna16@gmail.com",
   "socialLinks": [
-    { "label": "github.com/yourname", "url": "https://github.com/yourname" },
-    { "label": "linkedin.com/in/yourname", "url": "https://linkedin.com/in/yourname" }
+    { "label": "GitHub", "url": "https://github.com/averyreyna" },
+    { "label": "LinkedIn", "url": "https://linkedin.com/in/avery-reyna" }
   ],
   "footerLinks": [
-    { "label": "your@email.com", "url": "mailto:your@email.com" },
-    { "label": "github.com/yourname", "url": "https://github.com/yourname" },
-    { "label": "linkedin.com/in/yourname", "url": "https://linkedin.com/in/yourname" }
+    { "label": "Email", "url": "mailto:avery.reyna16@gmail.com" },
+    { "label": "GitHub", "url": "https://github.com/averyreyna" },
+    { "label": "LinkedIn", "url": "https://linkedin.com/in/avery-reyna" }
   ]
 }

@@ -1,20 +1,14 @@
 [
   {
-    "year": "2025",
-    "company": "Company One",
-    "location": "San Francisco",
+    "year": "2023 — 2026",
+    "company": "Capital One",
+    "location": "McLean",
     "role": "Software Engineer"
   },
   {
-    "year": "2024",
-    "company": "Company Two",
-    "location": "New York",
-    "role": "Frontend Developer"
-  },
-  {
-    "year": "2023",
-    "company": "Company Three",
-    "location": "Remote",
-    "role": "Engineering Intern"
+    "year": "2020 — 2023",
+    "company": "Various Companies",
+    "location": "Various Locations",
+    "role": "Various Internships"
   }
 ]

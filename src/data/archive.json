@@ -1,25 +1,44 @@
 [
   {
-    "year": "2024",
-    "title": "Archive Project One",
-    "url": "https://example.com/archive1",
-    "description": "A data visualization dashboard for climate research",
+    "year": "2025",
+    "title": "Palestra",
+    "url": "",
+    "description": "Answering in-context questions about AI-generated codebases",
     "descriptionLinks": []
   },
   {
-    "year": "2023",
-    "title": "Archive Project Two",
-    "url": "https://example.com/archive2",
-    "description": "A collaborative art tool built during a hackathon",
-    "descriptionLinks": [
-      { "text": "hackathon", "url": "https://example.com/hackathon" }
-    ]
+    "year": "2025",
+    "title": "Rerank",
+    "url": "",
+    "description": "Revisiting an experiment on utilizing text summarization models for annotating textual data",
+    "descriptionLinks": []
   },
   {
-    "year": "2022",
-    "title": "Archive Project Three",
-    "url": "https://example.com/archive3",
-    "description": "An experimental music sequencer in the browser",
+    "year": "2025",
+    "title": "Perceptor",
+    "url": "",
+    "description": "Interactive CLI coding assistant that guides you through the process of developing software",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2025",
+    "title": "Scrutinize",
+    "url": "",
+    "description": "Editing DeepSeek's essays with interactive human-centered annotation",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2025",
+    "title": "Specter",
+    "url": "",
+    "description": "Ephemeral Deepseek-based AI assistant made for the writing process",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2025",
+    "title": "Meta Measure",
+    "url": "",
+    "description": "Evaluating Claude Sonnet 3.7's ability to assess research ideas from across all disciplines",
     "descriptionLinks": []
   }
 ]

@@ -2,7 +2,9 @@ function Footer({ name, footerLinks }) {
   const year = new Date().getFullYear();
   return (
     <footer>
-      <p>☆</p>
+      <p>
+        <img src={`${process.env.PUBLIC_URL}/images/dragon.png`} alt="" style={{ display: 'block', maxWidth: '100%', filter: 'invert(1)' }} />
+      </p>
       <p>Happy to chat, reach out!</p>
       <ul>
         {footerLinks.map((link, i) => (
@@ -12,7 +14,7 @@ function Footer({ name, footerLinks }) {
         ))}
       </ul>
       <p style={{ marginTop: '40px', fontSize: '0.7em', opacity: 0.8 }}>
-        &copy; {year} {name}
+        &copy; {year} <span className="name">{name}</span>
       </p>
       <p style={{ fontSize: '0.6em', opacity: 0.6 }}>
         Inspired by Sharon Zheng

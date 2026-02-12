@@ -1,23 +1,9 @@
 [
   {
-    "date": "December 19-21, 2025",
-    "description": "Presented a talk on creative coding at",
+    "date": "2025",
+    "description": "",
     "links": [
-      { "text": "Creative Tech Conference", "url": "https://example.com/conference" }
-    ]
-  },
-  {
-    "date": "August 5, 2025",
-    "description": "Exhibited interactive installation at",
-    "links": [
-      { "text": "Digital Art Fair", "url": "https://example.com/artfair" }
-    ]
-  },
-  {
-    "date": "March 10-12, 2024",
-    "description": "Workshop on web animation at",
-    "links": [
-      { "text": "Frontend Summit", "url": "https://example.com/summit" }
+      { "text": "", "url": "" }
     ]
   }
 ]
