@@ -2,7 +2,7 @@ import EntryItem from './EntryItem';
 import WorkEntry from './WorkEntry';
 
 function EntryList({ entries, type, className }) {
-  const Component = type === 'work' ? WorkEntry : EntryItem;
+  const Component = type === 'work' || type === 'research' ? WorkEntry : EntryItem;
   return (
     <article>
       <ul className={className || ''}>

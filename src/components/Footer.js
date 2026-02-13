@@ -5,7 +5,7 @@ function Footer({ name, footerLinks }) {
       <p>
         <img src={`${process.env.PUBLIC_URL}/images/dragon.png`} alt="" style={{ display: 'block', maxWidth: '100%', filter: 'invert(1)' }} />
       </p>
-      <p>Happy to chat, reach out!</p>
+      <p>Have an idea? Reach out!</p>
       <ul>
         {footerLinks.map((link, i) => (
           <li key={i}>

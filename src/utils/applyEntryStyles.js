@@ -3,6 +3,7 @@
 export function getEntryClassName(type) {
   switch (type) {
     case 'work':
+    case 'research':
       return 'tight';
     case 'project':
     case 'archive':

@@ -1,6 +1,6 @@
 /**
- * Renders a single <li> from an entry object.
- * Handles projects, archive entries, and events.
+ * renders a single <li> from an entry object.
+ * handles projects, archive entries, and events.
  *
  * Projects/Archive: { year?, title, url?, description, descriptionLinks }
  * Events:           { date, description, links }
@@ -11,8 +11,8 @@ function renderDescription(entry) {
   const descriptionLinks = entry.descriptionLinks || [];
   const links = entry.links || [];
 
-  // For entries with descriptionLinks (projects, archive):
-  // Find text matches in description and replace with <a> tags
+  // for entries with descriptionLinks (projects, archive):
+  // find text matches in description and replace with <a> tags
   if (descriptionLinks.length > 0) {
     const parts = [];
     let remaining = description;
@@ -39,8 +39,9 @@ function renderDescription(entry) {
     return parts;
   }
 
-  // For entries with links (events):
-  // Append link elements after the description text
+  // for entries with links (events):
+  // append link elements after the description text
+  // otherwise, return the plain description with no links
   if (links.length > 0) {
     const parts = [description];
 
@@ -60,7 +61,6 @@ function renderDescription(entry) {
     return parts;
   }
 
-  // Plain description with no links
   return description;
 }
 
