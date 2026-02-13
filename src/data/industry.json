@@ -1,0 +1,37 @@
+[
+  {
+    "year": "2025",
+    "title": "Metrics Playground",
+    "url": "",
+    "description": "Teaching Cyber D&M how to use agents for programming via a GitHub Copilot-built QA feature",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2025",
+    "title": "Admin Metrics Dashboard",
+    "url": "",
+    "description": "Established an in-house heartbeat monitoring solution replacing Grafana dashboards of cyber logs",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2024",
+    "title": "ILM Portal",
+    "url": "",
+    "description": "Designed an identity lifecycle portal for various Cyber Tech to decouple from SailPoint",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2024",
+    "title": "File Upload Tool",
+    "url": "",
+    "description": "Upgraded the frontend of a custom authorization plugin that validates native application content",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2024",
+    "title": "Penetration Test Checklists",
+    "url": "",
+    "description": "Rendered editable spreadsheets of simulated cyberattacks for a security remediation platform",
+    "descriptionLinks": []
+  }
+]

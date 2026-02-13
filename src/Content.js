@@ -3,6 +3,7 @@ import projects from './data/projects.json';
 import research from './data/research.json';
 import work from './data/work.json';
 import archive from './data/archive.json';
+import industry from './data/industry.json';
 import events from './data/events.json';
 import education from './data/education.json';
 import interests from './data/interests.json';
@@ -58,11 +59,8 @@ function Content() {
           <article>
             <ul>
               <li>{intro.tagline}</li>
-              <li>{intro.email}</li>
-              {intro.socialLinks.map((link, i) => (
-                <li key={i}>
-                  <a href={link.url} target="_blank" rel="noopener noreferrer">{link.label}</a>
-                </li>
+              {intro.bullets?.map((bullet, i) => (
+                <li key={i}>{bullet}</li>
               ))}
             </ul>
           </article>
@@ -81,6 +79,10 @@ function Content() {
 
           <Section title="Past Projects">
             <EntryList entries={archive} type="archive" />
+          </Section>
+
+          <Section title="Industry Projects">
+            <EntryList entries={industry} type="archive" />
           </Section>
 
           <Section title="Talks">
