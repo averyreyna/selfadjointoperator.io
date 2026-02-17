@@ -81,7 +81,7 @@ function Content() {
           </Section>
 
           <Section title="Past Projects">
-            <EntryList entries={projects} type="project" />
+            <EntryList entries={projects.slice(3)} type="project" />
           </Section>
 
           <Section title="Education">
