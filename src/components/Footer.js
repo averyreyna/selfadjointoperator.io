@@ -2,9 +2,6 @@ function Footer({ name, footerLinks }) {
   const year = new Date().getFullYear();
   return (
     <footer>
-      <p>
-        <img src={`${process.env.PUBLIC_URL}/images/dragon.png`} alt="" style={{ display: 'block', maxWidth: '100%', filter: 'invert(1)' }} />
-      </p>
       <p>Have an idea? Reach out!</p>
       <ul>
         {footerLinks.map((link, i) => (

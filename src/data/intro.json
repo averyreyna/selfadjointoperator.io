@@ -2,11 +2,12 @@
   "name": "Avery Reyna",
   "tagline": "Software Designer",
   "bullets": [
-    "Forecasting — University of Kentucky",
-    "GenUI — UC San Diego",
-    "Data Quality — Capital One"
+    "Experiments",
+    "Field Research",
+    "Prototypes"
   ],
   "footerLinks": [
+    {"label": "Blog", "url": "https://semanticdistance.io"},
     {"label": "Email", "url": "mailto:avery.reyna16@gmail.com"},
     {"label": "GitHub", "url": "https://github.com/averyreyna"},
     {"label": "LinkedIn", "url": "https://linkedin.com/in/avery-reyna"}

@@ -1,26 +1,90 @@
 [
   {
+    "year": "2025",
     "title": "Convoy",
-    "url": "",
+    "category": "P",
+    "url": "https://www.instagram.com/p/DUtM0IdDqP7/?img_index=1",
     "description": "Node-based canvas UI editor for data wrangling and Datawrapper exporting",
-    "descriptionLinks": [
-      { "text": "", "url": "" }
-    ]
+    "descriptionLinks": []
   },
   {
+    "year": "2025",
     "title": "Transparent",
+    "category": "E",
     "url": "https://www.instagram.com/p/DUre8sfDHxL/?img_index=1",
     "description": "Exploring how LLMs can both generate user interfaces and explain its associated code",
-    "descriptionLinks": [
-      { "text": "", "url": "" }
-    ]
+    "descriptionLinks": []
   },
   {
+    "year": "2025",
     "title": "Form",
+    "category": "E",
     "url": "https://www.instagram.com/p/DUgSxB1Dmmu/?img_index=1",
     "description": "Malleable notes app with Meridian ODIs and in-app feature generation with executable code snippets",
-    "descriptionLinks": [
-      { "text": "", "url": "" }
-    ]
+    "descriptionLinks": []
+  },
+  {
+    "year": "2025",
+    "title": "Palestra",
+    "category": "P",
+    "url": "https://www.instagram.com/p/DOT9EuXD7UZ/",
+    "description": "Answering in-context questions about AI-generated codebases",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2025",
+    "title": "Rerank",
+    "category": "P",
+    "url": "https://www.instagram.com/p/DOKLyKbj-n4/?img_index=1",
+    "description": "Revisiting an experiment on utilizing text summarization models for annotating textual data",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2025",
+    "title": "Perceptor",
+    "category": "P",
+    "url": "https://www.instagram.com/p/DOJZOb9DjZc/?img_index=1",
+    "description": "Interactive CLI coding assistant that guides you through the process of developing software",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2025",
+    "title": "Scrutinize",
+    "category": "P",
+    "url": "https://www.instagram.com/p/DKvfqtFouqF/?img_index=1",
+    "description": "Editing DeepSeek's essays with interactive human-centered annotation",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2025",
+    "title": "Specter",
+    "category": "P",
+    "url": "https://www.instagram.com/p/DKvAULfvXVg/?img_index=1",
+    "description": "Ephemeral Deepseek-based AI assistant made for the writing process",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2025",
+    "title": "Meta Measure",
+    "category": "P",
+    "url": "https://www.instagram.com/p/DKGRo-yozpb/?img_index=1",
+    "description": "Evaluating Claude Sonnet 3.7's ability to assess research ideas from across all disciplines",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2024",
+    "title": "Help Supporters",
+    "category": "FR",
+    "url": "https://arxiv.org/pdf/2403.08221",
+    "description": "Exploring the design space of assistive technologies through a mixed-ability study with four prototypes",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2023",
+    "title": "Spatial Interactions",
+    "category": "FR",
+    "url": "https://ceal.cs.columbia.edu/webnext/",
+    "description": "Technology probe to evaluate integrating spatial browsing into desktop screen readers",
+    "descriptionLinks": []
   }
 ]

@@ -2,9 +2,6 @@ import intro from './data/intro.json';
 import projects from './data/projects.json';
 import research from './data/research.json';
 import work from './data/work.json';
-import archive from './data/archive.json';
-import industry from './data/industry.json';
-import events from './data/events.json';
 import education from './data/education.json';
 import interests from './data/interests.json';
 
@@ -59,14 +56,20 @@ function Content() {
           <article>
             <ul>
               <li>{intro.tagline}</li>
-              {intro.bullets?.map((bullet, i) => (
-                <li key={i}>{bullet}</li>
-              ))}
+              {intro.bullets?.map((bullet, i) => {
+                const sup = { Experiments: 'E', 'Field Research': 'FR', Prototypes: 'P' }[bullet];
+                return (
+                  <li key={i}>
+                    {bullet}
+                    {sup && <>{' '}<sup>{sup}</sup></>}
+                  </li>
+                );
+              })}
             </ul>
           </article>
 
           <Section title="Recent Projects">
-            <EntryList entries={projects} type="project" />
+            <EntryList entries={projects.slice(0, 3)} type="project" />
           </Section>
 
           <Section title="Research Experience">
@@ -78,15 +81,7 @@ function Content() {
           </Section>
 
           <Section title="Past Projects">
-            <EntryList entries={archive} type="archive" />
-          </Section>
-
-          <Section title="Industry Projects">
-            <EntryList entries={industry} type="archive" />
-          </Section>
-
-          <Section title="Talks">
-            <EntryList entries={events} type="event" />
+            <EntryList entries={projects} type="project" />
           </Section>
 
           <Section title="Education">

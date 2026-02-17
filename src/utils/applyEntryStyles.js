@@ -7,7 +7,6 @@ export function getEntryClassName(type) {
       return 'tight';
     case 'project':
     case 'archive':
-    case 'event':
     default:
       return '';
   }

@@ -1,15 +1,13 @@
 /**
  * renders a single <li> from an entry object.
- * handles projects, archive entries, and events.
+ * handles projects and archive entries.
  *
  * Projects/Archive: { year?, title, url?, description, descriptionLinks }
- * Events:           { date, description, links }
  */
 
 function renderDescription(entry) {
   const description = entry.description || '';
   const descriptionLinks = entry.descriptionLinks || [];
-  const links = entry.links || [];
 
   // for entries with descriptionLinks (projects, archive):
   // find text matches in description and replace with <a> tags
@@ -39,28 +37,6 @@ function renderDescription(entry) {
     return parts;
   }
 
-  // for entries with links (events):
-  // append link elements after the description text
-  // otherwise, return the plain description with no links
-  if (links.length > 0) {
-    const parts = [description];
-
-    links.forEach((link, i) => {
-      if (i > 0) {
-        parts.push(', ');
-      } else {
-        parts.push(' ');
-      }
-      parts.push(
-        <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer">
-          {link.text}
-        </a>
-      );
-    });
-
-    return parts;
-  }
-
   return description;
 }
 
@@ -75,6 +51,7 @@ function EntryItem({ entry }) {
       ) : (
         entry.title && <span>{entry.title}</span>
       )}
+      {entry.category && <>{' '}<sup>{entry.category}</sup></>}
       {entry.description && (
         <>{entry.title ? ' — ' : ''}{renderDescription(entry)}</>
       )}
