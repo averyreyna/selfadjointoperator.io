@@ -101,8 +101,9 @@ footer {
   padding-bottom: 300px;
 }
 
-footer .name {
+footer .copyright {
   font-family: var(--font-heading);
+  font-size: 0.6em;
 }
 
 /* ===========================
