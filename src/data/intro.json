@@ -7,11 +7,12 @@
     "Prototypes"
   ],
   "footerLinks": [
-    {"label": "Blog", "url": "https://semanticdistance.io"},
+    {"label": "Blog", "url": "https://www.semanticdistance.io"},
     {"label": "Email", "url": "mailto:avery.reyna16@gmail.com"},
     {"label": "GitHub", "url": "https://github.com/averyreyna"},
     {"label": "Google Scholar", "url": "https://scholar.google.com/citations?user=WecCIHwAAAAJ&hl=en"},
     {"label": "Instagram", "url": "https://www.instagram.com/selfadjointoperator"},
+    {"label": "Personal", "url": "https://www.avryryn.io"},
     {"label": "LinkedIn", "url": "https://linkedin.com/in/avery-reyna"}
   ]
 }
