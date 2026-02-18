@@ -3,7 +3,7 @@ import Content from './Content';
 import styles from './App.module.css';
 
 /**
- * Measures center-content height vs center-fold height,
+ * measures center-content height vs center-fold height,
  * sets document.body.style.height to create the scroll range.
  */
 function calcValues() {
@@ -20,7 +20,7 @@ function calcValues() {
 }
 
 /**
- * On scroll, apply translateY(-scrollY) to all [data-fold-content] elements
+ * on scroll, apply translateY(-scrollY) to all [data-fold-content] elements
  * via requestAnimationFrame for smooth performance.
  */
 function handleScroll() {

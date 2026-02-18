@@ -7,7 +7,6 @@ import interests from './data/interests.json';
 
 import Section from './components/Section';
 import EntryList from './components/EntryList';
-import Footer from './components/Footer';
 import styles from './Content.module.css';
 
 /**
@@ -95,8 +94,6 @@ function Content() {
               </div>
             </article>
           </Section>
-
-          <Footer name={intro.name} footerLinks={intro.footerLinks} />
         </div>
       </div>
     </main>
