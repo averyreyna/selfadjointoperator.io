@@ -19,7 +19,7 @@ function Footer({ name, footerLinks }) {
       <br />
       <p className="copyright">© {year} {name.toUpperCase()}</p>
       <p className="copyright">
-        INSPIRED BY{' '}
+        INSPIRED BY:{' '}
         <a href="https://sharonzheng.com/" target="_blank" rel="noopener noreferrer">
           SHARON ZHENG
         </a>
