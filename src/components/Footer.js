@@ -4,6 +4,7 @@ function Footer({ name, footerLinks }) {
   return (
     <footer>
       <p>Have an idea? Reach out!</p>
+      <br />
       {footerLinks?.length > 0 && (
         <ul>
           {footerLinks.map((link, i) => (
@@ -16,6 +17,7 @@ function Footer({ name, footerLinks }) {
         </ul>
       )}
       <p className="copyright">© {year} {name.toUpperCase()}</p>
+      <br />
       <p className="copyright">
         INSPIRED BY{' '}
         <a href="https://sharonzheng.com/" target="_blank" rel="noopener noreferrer">
