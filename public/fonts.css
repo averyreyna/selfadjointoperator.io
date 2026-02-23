@@ -1,4 +1,3 @@
-/* ABC ROM (body), ABC ROM Mono (headings / name) — loaded from public so URLs resolve at runtime */
 @font-face {
   font-family: 'ABC ROM';
   src: url('fonts/ABC%20ROM/ABCROM-Regular-Trial.woff2') format('woff2'),

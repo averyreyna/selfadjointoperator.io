@@ -10,14 +10,15 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "generate-favicons": "node scripts/generate-favicons.js"
   },
   "eslintConfig": {
     "extends": [
       "react-app"
     ]
   },
-  "browserslist": {
+  "devDependencies":{"sharp":"^0.33.5"},"browserslist": {
     "production": [
       ">0.2%",
       "not dead",
