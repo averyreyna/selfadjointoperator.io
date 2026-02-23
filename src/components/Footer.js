@@ -22,6 +22,7 @@ function Footer({ name, footerLinks }) {
           SHARON ZHENG
         </a>
       </p>
+      <p>LAST UPDATED: 2026-02</p>
     </footer>
   );
 }
