@@ -1,5 +1,6 @@
 import intro from './data/intro.json';
 import projects from './data/projects.json';
+import writing from './data/writing.json';
 import research from './data/research.json';
 import work from './data/work.json';
 import education from './data/education.json';
@@ -82,6 +83,10 @@ function Content() {
 
           <Section title="Past Projects">
             <EntryList entries={projects.slice(3)} type="project" />
+          </Section>
+
+          <Section title="Writing">
+            <EntryList entries={writing} type="project" />
           </Section>
 
           <Section title="Education">
