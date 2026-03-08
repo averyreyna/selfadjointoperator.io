@@ -1,6 +1,30 @@
 [
   {
     "year": "2026",
+    "title": "Conjure Code",
+    "category": "P",
+    "url": "www.placeholder.com",
+    "description": "Custom visualizations of imported repositories",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2026",
+    "title": "Daydream",
+    "category": "P",
+    "url": "www.placeholder.com",
+    "description": "ASCII diagrams of code functions, classes, and methods",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2026",
+    "title": "Envisiage",
+    "category": "P",
+    "url": "www.placeholder.com",
+    "description": "In-line AI assistant with anchored annotations and comments",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2026",
     "title": "Catalyst",
     "category": "P",
     "url": "https://www.instagram.com/p/DVFKglBj63U/?img_index=1",

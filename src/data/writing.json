@@ -1,9 +1,23 @@
 [
   {
     "year": "2026",
+    "title": "Earnestly Prototyping with LLMs",
+    "url": "www.placeholder.com",
+    "description": "Discussing how my GenAI experiments have informed my research interests",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2026",
     "title": "Redesigning Convoy",
-    "url": "",
+    "url": "www.placeholder.com",
     "description": "Development process of creating novel user interactions for a prototype",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2026",
+    "title": "Scaffolding Prompts with React and Svelte",
+    "url": "www.placeholder.com",
+    "description": "Some observations on building effective prompting pipelines in LLM web apps",
     "descriptionLinks": []
   }
 ]
