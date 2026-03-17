@@ -1,6 +1,14 @@
 [
   {
     "year": "2026",
+    "title": "CoupCats",
+    "category": "FR",
+    "url": "www.placeholder.com",
+    "description": "Interactive dashboard displaying illegal leader turnover globally via R ML models",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2026",
     "title": "Conjure Code",
     "category": "P",
     "url": "www.placeholder.com",
@@ -12,7 +20,7 @@
     "title": "Daydream",
     "category": "P",
     "url": "www.placeholder.com",
-    "description": "ASCII diagrams of code functions, classes, and methods",
+    "description": "Mermaid diagrams of inputted programs",
     "descriptionLinks": []
   },
   {
@@ -20,7 +28,7 @@
     "title": "Envisiage",
     "category": "P",
     "url": "www.placeholder.com",
-    "description": "In-line AI assistant with anchored annotations and comments",
+    "description": "In-line AI assistant with anchored annotations and comments powered by Sonnet 4.5",
     "descriptionLinks": []
   },
   {
@@ -108,7 +116,7 @@
     "title": "Specter",
     "category": "P",
     "url": "https://www.instagram.com/p/DKvAULfvXVg/?img_index=1",
-    "description": "Ephemeral Deepseek-based AI assistant made for the writing process",
+    "description": "Ephemeral DeepSeek-based AI assistant made for the writing process",
     "descriptionLinks": []
   },
   {

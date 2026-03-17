@@ -3,7 +3,6 @@ import projects from './data/projects.json';
 import writing from './data/writing.json';
 import research from './data/research.json';
 import work from './data/work.json';
-import education from './data/education.json';
 import interests from './data/interests.json';
 
 import Section from './components/Section';
@@ -87,10 +86,6 @@ function Content() {
 
           <Section title="Writing">
             <EntryList entries={writing} type="project" />
-          </Section>
-
-          <Section title="Education">
-            <EntryList entries={education} type="archive" />
           </Section>
 
           <Section title="Interests">
