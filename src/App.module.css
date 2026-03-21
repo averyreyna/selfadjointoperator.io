@@ -2,6 +2,21 @@
    3D Fold Layout
    =========================== */
 
+/* Full-viewport graph: outside 3D fold so layout/size observers are reliable. */
+.graphShell {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background-color: var(--main-bg-color);
+  box-sizing: border-box;
+}
+
 .all {
   position: fixed;
   top: 0;

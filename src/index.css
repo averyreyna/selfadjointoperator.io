@@ -48,7 +48,8 @@ hr {
   border: 0.5px solid #fff;
 }
 
-h1 {
+/* List/resume layout only — graph view uses plain header/section without these constraints. */
+.site-list h1 {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -63,7 +64,7 @@ h1, h2, h3, h4 {
   font-family: var(--font-heading);
 }
 
-h2 {
+.site-list h2 {
   margin-top: 120px;
 }
 
@@ -78,7 +79,7 @@ ul li {
   margin-left: -15px;
 }
 
-section ul li {
+.site-list section ul li {
   margin-bottom: 20px;
 }
 
@@ -87,21 +88,22 @@ ul li sup {
   font-size: 0.6em;
 }
 
-header {
+.site-list header {
   height: 88vh;
   position: relative;
 }
 
-section, header {
+.site-list section,
+.site-list header {
   margin-bottom: 50px;
 }
 
-footer {
+.site-list footer {
   margin: 100px 0 200px;
   padding-bottom: 300px;
 }
 
-footer .copyright {
+.site-list footer .copyright {
   font-family: var(--font-heading);
   font-size: 0.6em;
 }
@@ -115,19 +117,19 @@ footer .copyright {
     font-size: 0.9rem;
   }
 
-  header {
+  .site-list header {
     height: 40vh;
   }
 
-  h1 {
+  .site-list h1 {
     word-spacing: 18px;
   }
 
-  h1 span {
+  .site-list h1 span {
     border-bottom: 2px solid #fff;
   }
 
-  footer {
+  .site-list footer {
     padding-bottom: 100px;
   }
 }

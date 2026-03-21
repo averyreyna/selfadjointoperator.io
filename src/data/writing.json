@@ -1,6 +1,13 @@
 [
   {
     "year": "2026",
+    "title": "Earnestly prototyping with LLMs",
+    "url": "www.placeholder.com",
+    "description": "Discussing how my GenAI experiments have informed my research interests",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2026",
     "title": "Node Types in Convoy",
     "url": "www.placeholder.com",
     "description": "Development process of creating novel user interactions for a prototype",
@@ -10,7 +17,7 @@
     "year": "2026",
     "title": "Local(host) Software",
     "url": "www.placeholder.com",
-    "description": "Discussing how my GenAI experiments have informed my research interests",
+    "description": "Musings on ad-hoc software and developing your own app ecosystem",
     "descriptionLinks": []
   }
 ]

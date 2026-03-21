@@ -17,11 +17,13 @@
   {
     "year": "2022",
     "company": "XR Access",
-    "role": "REU Participant"
+    "role": "REU Participant",
+    "connections": ["research-university-of-central-florida"]
   },
   {
     "year": "2021",
     "company": "University of Washington Tacoma",
-    "role": "REU Participant"
+    "role": "REU Participant",
+    "connections": ["research-university-of-central-florida"]
   }
 ]

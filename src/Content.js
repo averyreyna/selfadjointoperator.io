@@ -8,6 +8,7 @@ import interests from './data/interests.json';
 import Section from './components/Section';
 import EntryList from './components/EntryList';
 import Footer from './components/Footer';
+import ViewModeToggle from './components/ViewModeToggle';
 import styles from './Content.module.css';
 
 /**
@@ -22,14 +23,19 @@ function renderTextWithLinks(text, links) {
   const parts = [];
   let remaining = text;
 
-  links.forEach((link) => {
+  links.forEach((link, linkIndex) => {
     const idx = remaining.indexOf(link.text);
     if (idx !== -1) {
       if (idx > 0) {
         parts.push(remaining.substring(0, idx));
       }
       parts.push(
-        <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer">
+        <a
+          key={`${link.url || link.text || 'link'}-${linkIndex}-${idx}`}
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {link.text}
         </a>
       );
@@ -44,12 +50,15 @@ function renderTextWithLinks(text, links) {
   return parts;
 }
 
-function Content() {
+function Content({ viewMode = 'list', onChangeView = () => {} }) {
   return (
-    <main className={styles.printPage}>
+    <main className={`${styles.printPage} site-list`}>
       <div className={styles.printContent}>
         <header>
-          <h1>{intro.name}</h1>
+          <h1 className={styles.nameRow}>
+            <span>{intro.name}</span>
+            <ViewModeToggle mode={viewMode} onChange={onChangeView} />
+          </h1>
         </header>
 
         <div>

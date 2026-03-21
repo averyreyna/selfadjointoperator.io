@@ -12,6 +12,12 @@
   padding: 30px;
 }
 
+.nameRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
 .tight li {
   margin-bottom: 10px;
 }

@@ -1,28 +1,22 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Content from './Content';
+import EntryGraphView from './views/EntryGraphView';
+import { buildEntryGraph } from './utils/buildEntryGraph';
 import styles from './App.module.css';
 
-/**
- * measures center-content height vs center-fold height,
- * sets document.body.style.height to create the scroll range.
- */
 function calcValues() {
   const centerContent = document.getElementById('center-content');
   const centerFold = document.getElementById('center-fold');
 
   if (!centerContent || !centerFold) return;
 
-  const contentHeight = centerContent.offsetHeight;
-  const foldHeight = centerFold.offsetHeight;
-  const overflow = contentHeight - foldHeight;
-
+  const contentHeight = centerContent.scrollHeight;
+  const foldHeight = centerFold.clientHeight;
+  const overflow = Math.max(0, contentHeight - foldHeight);
   document.body.style.height = `${overflow + window.innerHeight}px`;
+  document.body.style.width = '100vw';
 }
 
-/**
- * on scroll, apply translateY(-scrollY) to all [data-fold-content] elements
- * via requestAnimationFrame for smooth performance.
- */
 function handleScroll() {
   requestAnimationFrame(() => {
     const scrollY = window.scrollY;
@@ -34,33 +28,86 @@ function handleScroll() {
 }
 
 function App() {
+  const [viewMode, setViewMode] = useState('list');
+  const graphData = useMemo(() => buildEntryGraph(), []);
+
   useEffect(() => {
-    window.addEventListener('resize', calcValues);
-    window.addEventListener('scroll', handleScroll);
+    const params = new URLSearchParams(window.location.search);
+    const view = params.get('view');
+    if (view === 'graph' || view === 'list') {
+      setViewMode(view);
+    }
+  }, []);
+
+  const handleChangeView = (nextMode) => {
+    setViewMode(nextMode);
+    const url = new URL(window.location.href);
+    url.searchParams.set('view', nextMode);
+    window.history.replaceState({}, '', url);
+    window.scrollTo(0, 0);
+  };
+
+  useEffect(() => {
+    if (viewMode !== 'list') {
+      document.body.style.height = '';
+      document.body.style.width = '';
+      return;
+    }
+
+    const onResize = () => calcValues();
+    const onScroll = () => handleScroll();
+
+    window.addEventListener('resize', onResize);
+    window.addEventListener('scroll', onScroll);
+
     calcValues();
+    handleScroll();
+    const rafId = window.requestAnimationFrame(() => {
+      calcValues();
+      handleScroll();
+    });
 
     return () => {
-      window.removeEventListener('resize', calcValues);
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', onResize);
+      window.removeEventListener('scroll', onScroll);
+      window.cancelAnimationFrame(rafId);
     };
-  }, []);
+  }, [viewMode]);
+
+  if (viewMode === 'graph') {
+    return (
+      <div className={styles.graphShell}>
+        <EntryGraphView
+          nodes={graphData.nodes}
+          edges={graphData.edges}
+          introName={graphData.introName}
+          mode={viewMode}
+          onChangeMode={handleChangeView}
+        />
+      </div>
+    );
+  }
+
+  const foldContent = (
+    <Content viewMode={viewMode} onChangeView={handleChangeView} />
+  );
 
   return (
     <div className={styles.all}>
       <div className={styles.wrapper3d}>
         <div className={`${styles.fold} ${styles.foldTop}`}>
           <div className={styles.foldAlign}>
-            <div data-fold-content="true"><Content /></div>
+            <div data-fold-content="true">{foldContent}</div>
           </div>
         </div>
         <div className={styles.fold} id="center-fold">
           <div className={styles.foldAlign}>
-            <div data-fold-content="true" id="center-content"><Content /></div>
+            <div data-fold-content="true" id="center-content">{foldContent}</div>
           </div>
         </div>
         <div className={`${styles.fold} ${styles.foldBottom}`}>
           <div className={styles.foldAlign}>
-            <div data-fold-content="true"><Content /></div>
+            <div data-fold-content="true">{foldContent}</div>
           </div>
         </div>
       </div>
