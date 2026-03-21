@@ -24,9 +24,11 @@
   position: static;
   display: inline-flex;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 8px;
   word-spacing: normal;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .canvas {
@@ -157,6 +159,12 @@
 
   .header {
     padding-bottom: 36px;
+  }
+
+  .title {
+    width: 100%;
+    justify-content: space-between;
+    font-size: clamp(0.62rem, 3.6vw, 0.82rem);
   }
 
   .node {

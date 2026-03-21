@@ -16,13 +16,21 @@
   box-sizing: border-box;
 }
 
-html {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and old Edge */
+/* Hide scrollbars everywhere while keeping scroll behavior (all views / overflow regions) */
+html,
+body,
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-html::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera, new Edge */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  background: transparent;
 }
 
 body {
@@ -46,6 +54,16 @@ a {
 
 hr {
   border: 0.5px solid #fff;
+}
+
+/* Section underlines don’t run flush to the column / viewport edge */
+.site-list section hr,
+.site-columns section hr {
+  width: calc(100% - 1.25rem);
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: auto;
+  box-sizing: border-box;
 }
 
 /* List/resume layout only — graph view uses plain header/section without these constraints. */
@@ -103,9 +121,43 @@ ul li sup {
   padding-bottom: 300px;
 }
 
-.site-list footer .copyright {
+.site-list footer .copyright,
+.site-columns footer .copyright {
   font-family: var(--font-heading);
-  font-size: 0.6em;
+  font-size: 0.52em;
+  line-height: 1.4;
+}
+
+/* Columns view: full-viewport horizontal sections (not fold list layout) */
+.site-columns {
+  font-size: clamp(0.65rem, 1.85vw, 0.95rem);
+}
+
+.site-columns h1 {
+  position: static;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  word-spacing: normal;
+}
+
+.site-columns header {
+  height: auto;
+  margin-bottom: 0;
+}
+
+.site-columns section,
+.site-columns header {
+  margin-bottom: 0;
+}
+
+.site-columns h2 {
+  margin-top: 1.25rem;
+}
+
+.site-columns footer {
+  margin: 1.75rem 0 0;
+  padding-bottom: 1.5rem;
 }
 
 /* ===========================
@@ -121,16 +173,38 @@ ul li sup {
     height: 40vh;
   }
 
-  .site-list h1 {
-    word-spacing: 18px;
-  }
-
-  .site-list h1 span {
-    border-bottom: 2px solid #fff;
+  /* header h1 beats Content.module.css .nameRow specificity so layout isn’t reverted */
+  .site-list header h1 {
+    left: 0;
+    right: 0;
+    width: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    word-spacing: 0.22em;
+    white-space: nowrap;
+    font-size: clamp(0.62rem, 3.6vw, 0.82rem);
+    box-sizing: border-box;
   }
 
   .site-list footer {
     padding-bottom: 100px;
+  }
+
+  .site-columns header h1 {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    max-width: 100%;
+    word-spacing: 0.22em;
+    white-space: nowrap;
+    font-size: clamp(0.62rem, 3.6vw, 0.82rem);
+    box-sizing: border-box;
   }
 }
 

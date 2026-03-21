@@ -34,7 +34,7 @@ function App() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const view = params.get('view');
-    if (view === 'graph' || view === 'list') {
+    if (view === 'graph' || view === 'list' || view === 'columns') {
       setViewMode(view);
     }
   }, []);
@@ -83,6 +83,18 @@ function App() {
           introName={graphData.introName}
           mode={viewMode}
           onChangeMode={handleChangeView}
+        />
+      </div>
+    );
+  }
+
+  if (viewMode === 'columns') {
+    return (
+      <div className={styles.columnShell}>
+        <Content
+          viewMode={viewMode}
+          onChangeView={handleChangeView}
+          layout="columns"
         />
       </div>
     );

@@ -50,7 +50,83 @@ function renderTextWithLinks(text, links) {
   return parts;
 }
 
-function Content({ viewMode = 'list', onChangeView = () => {} }) {
+function IntroArticle() {
+  return (
+    <article>
+      <ul>
+        <li>{intro.tagline}</li>
+        {intro.bullets?.map((bullet, i) => {
+          const sup = { Experiments: 'E', 'Field Research': 'FR', Prototypes: 'P' }[bullet];
+          return (
+            <li key={i}>
+              {bullet}
+              {sup && <>{' '}<sup>{sup}</sup></>}
+            </li>
+          );
+        })}
+      </ul>
+    </article>
+  );
+}
+
+function Content({ viewMode = 'list', onChangeView = () => {}, layout = 'list' }) {
+  if (layout === 'columns') {
+    return (
+      <main className={`${styles.columnMain} site-columns`}>
+        <header className={styles.columnsHeader}>
+          <h1 className={styles.nameRow}>
+            <span>{intro.name}</span>
+            <ViewModeToggle mode={viewMode} onChange={onChangeView} />
+          </h1>
+        </header>
+        <div
+          className={styles.columnsScroller}
+          role="region"
+          aria-label="Resume sections"
+        >
+          <div className={styles.columnsRow}>
+            <div className={styles.introColumn}>
+              <IntroArticle />
+            </div>
+            <div className={styles.column}>
+              <Section title="Recent Projects">
+                <EntryList entries={projects.slice(0, 3)} type="project" />
+              </Section>
+            </div>
+            <div className={styles.column}>
+              <Section title="Research Experience">
+                <EntryList entries={research} type="research" className={styles.tight} />
+              </Section>
+              <Section title="Work Experience">
+                <EntryList entries={work} type="work" className={styles.tight} />
+              </Section>
+            </div>
+            <div className={styles.column}>
+              <Section title="Past Projects">
+                <EntryList entries={projects.slice(3)} type="project" />
+              </Section>
+            </div>
+            <div className={styles.column}>
+              <Section title="Writing">
+                <EntryList entries={writing} type="project" />
+              </Section>
+            </div>
+            <div className={styles.column}>
+              <Section title="Interests">
+                <article>
+                  <div>
+                    <p>{renderTextWithLinks(interests.text, interests.links)}</p>
+                  </div>
+                </article>
+              </Section>
+              <Footer name={intro.name} footerLinks={intro.footerLinks} />
+            </div>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
   return (
     <main className={`${styles.printPage} site-list`}>
       <div className={styles.printContent}>
@@ -62,20 +138,7 @@ function Content({ viewMode = 'list', onChangeView = () => {} }) {
         </header>
 
         <div>
-          <article>
-            <ul>
-              <li>{intro.tagline}</li>
-              {intro.bullets?.map((bullet, i) => {
-                const sup = { Experiments: 'E', 'Field Research': 'FR', Prototypes: 'P' }[bullet];
-                return (
-                  <li key={i}>
-                    {bullet}
-                    {sup && <>{' '}<sup>{sup}</sup></>}
-                  </li>
-                );
-              })}
-            </ul>
-          </article>
+          <IntroArticle />
 
           <Section title="Recent Projects">
             <EntryList entries={projects.slice(0, 3)} type="project" />

@@ -1,5 +1,5 @@
 import styles from './ViewModeToggle.module.css';
-import { List, Network } from 'lucide-react';
+import { Columns2, List, Network } from 'lucide-react';
 
 function ViewModeToggle({ mode, onChange }) {
   return (
@@ -12,6 +12,15 @@ function ViewModeToggle({ mode, onChange }) {
         onClick={() => onChange('list')}
       >
         <List size={13} strokeWidth={2} aria-hidden="true" />
+      </button>
+      <button
+        type="button"
+        className={styles.iconButton}
+        aria-label="Columns view"
+        aria-pressed={mode === 'columns'}
+        onClick={() => onChange('columns')}
+      >
+        <Columns2 size={13} strokeWidth={2} aria-hidden="true" />
       </button>
       <button
         type="button"

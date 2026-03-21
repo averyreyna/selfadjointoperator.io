@@ -21,7 +21,7 @@
     "year": "2026",
     "title": "Daydream",
     "category": "P",
-    "connections": ["work-self-adjoint-operator"],
+    "connections": ["work-self-adjoint-operator", "writing-local-host-software"],
     "url": "https://www.instagram.com/p/DWBz1qvFeLo/?img_index=1",
     "description": "AI-generated Mermaid diagrams of inputted programs",
     "descriptionLinks": []
@@ -30,7 +30,7 @@
     "year": "2026",
     "title": "Envisiage",
     "category": "P",
-    "connections": ["work-self-adjoint-operator"],
+    "connections": ["work-self-adjoint-operator", "writing-local-host-software"],
     "url": "https://www.instagram.com/p/DVxA1a4jbaO/?img_index=1",
     "description": "In-line AI assistant with anchored annotations and comments powered by Sonnet 4.5",
     "descriptionLinks": []
@@ -48,7 +48,7 @@
     "year": "2026",
     "title": "CoupView",
     "category": "E",
-    "connections": ["work-self-adjoint-operator"],
+    "connections": ["work-self-adjoint-operator", "research-university-of-kentucky"],
     "url": "https://www.instagram.com/p/DU9cGIHD430/",
     "description": "Proof-of-concept dashboard displaying illegal leader turnover across the globe",
     "descriptionLinks": []
@@ -57,7 +57,7 @@
     "year": "2026",
     "title": "Convoy",
     "category": "P",
-    "connections": ["work-self-adjoint-operator"],
+    "connections": ["work-self-adjoint-operator", "writing-node-types-in-convoy"],
     "url": "https://www.instagram.com/p/DUtM0IdDqP7/?img_index=1",
     "description": "Node-based canvas UI editor for data wrangling and Datawrapper exporting",
     "descriptionLinks": []
@@ -93,10 +93,10 @@
     "year": "2025",
     "title": "GraphQL Scraper",
     "category": "E",
-    "connections": ["work-self-adjoint-operator"],
+    "connections": ["research-uc-san-diego"],
     "url": "https://www.instagram.com/p/DOKMaynD8U5/",
     "description": "Leveraging Stargazer GitHub data to find user interactions in agentic coding repositories",
-    "descriptionLinks": []
+    "descriptionLinks": [""]
   },
   {
     "year": "2025",

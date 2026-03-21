@@ -17,6 +17,20 @@
   box-sizing: border-box;
 }
 
+.columnShell {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background-color: var(--main-bg-color);
+  box-sizing: border-box;
+}
+
 .all {
   position: fixed;
   top: 0;
