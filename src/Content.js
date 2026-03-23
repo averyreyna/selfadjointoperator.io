@@ -92,8 +92,6 @@ function Content({ viewMode = 'list', onChangeView = () => {}, layout = 'list' }
               <Section title="Recent Projects">
                 <EntryList entries={projects.slice(0, 3)} type="project" />
               </Section>
-            </div>
-            <div className={styles.column}>
               <Section title="Research Experience">
                 <EntryList entries={research} type="research" className={styles.tight} />
               </Section>
@@ -110,8 +108,6 @@ function Content({ viewMode = 'list', onChangeView = () => {}, layout = 'list' }
               <Section title="Writing">
                 <EntryList entries={writing} type="project" />
               </Section>
-            </div>
-            <div className={styles.column}>
               <Section title="Interests">
                 <article>
                   <div>
