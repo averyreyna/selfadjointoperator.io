@@ -10,7 +10,10 @@ import ViewModeToggle from '../components/ViewModeToggle';
 import styles from './EntryGraphView.module.css';
 
 const BOTTOM_PAD = 120;
-const COLLISION_R = 58;
+const COLLISION_R = 64;
+const NODE_HALF_WIDTH = 60;
+const NODE_HALF_HEIGHT = 18;
+const FIT_PADDING = 28;
 /** Sync ticks before async d3-timer so first paint has positions (Strict Mode can stop the sim before rAF). */
 const PREWARM_TICKS = 160;
 
@@ -26,10 +29,22 @@ function straightEdgePath(link) {
   const s = link.source;
   const t = link.target;
   if (typeof s === 'string' || typeof t === 'string') return '';
-  const x1 = s.x;
-  const y1 = s.y;
-  const x2 = t.x;
-  const y2 = t.y;
+  const dx = t.x - s.x;
+  const dy = t.y - s.y;
+  const isZeroLength = Math.abs(dx) < 0.001 && Math.abs(dy) < 0.001;
+
+  if (isZeroLength) {
+    return `M${s.x},${s.y}L${t.x},${t.y}`;
+  }
+
+  const sourceScale = 1 / Math.max(Math.abs(dx) / NODE_HALF_WIDTH, Math.abs(dy) / NODE_HALF_HEIGHT);
+  const targetScale = 1 / Math.max(Math.abs(dx) / NODE_HALF_WIDTH, Math.abs(dy) / NODE_HALF_HEIGHT);
+
+  const x1 = s.x + dx * sourceScale;
+  const y1 = s.y + dy * sourceScale;
+  const x2 = t.x - dx * targetScale;
+  const y2 = t.y - dy * targetScale;
+
   return `M${x1},${y1}L${x2},${y2}`;
 }
 
@@ -37,6 +52,7 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
   const canvasRef = useRef(null);
   const graphSurfaceRef = useRef(null);
   const zoomLayerRef = useRef(null);
+  const zoomBehaviorRef = useRef(null);
   const simulationRef = useRef(null);
   const transformRef = useRef(d3.zoomIdentity);
   const nodeElRefs = useRef({});
@@ -131,10 +147,10 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
         d3
           .forceLink(linkObjs)
           .id((d) => d.id)
-          .distance(92)
+          .distance(100)
           .strength(0.5)
       )
-      .force('charge', d3.forceManyBody().strength(-300))
+      .force('charge', d3.forceManyBody().strength(-325))
       .force('center', d3.forceCenter(gw / 2, gh / 2))
       .force('collide', d3.forceCollide(COLLISION_R))
       .force('y', d3.forceY(gh / 2).strength(0.07))
@@ -190,12 +206,46 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
         setTransform(event.transform);
       });
 
+    zoomBehaviorRef.current = zoomFn;
     d3.select(el).call(zoomFn);
 
     return () => {
+      zoomBehaviorRef.current = null;
       d3.select(el).on('.zoom', null);
     };
   }, [simNodes.length]);
+
+  useLayoutEffect(() => {
+    const surfaceEl = graphSurfaceRef.current;
+    const zoomFn = zoomBehaviorRef.current;
+    if (!surfaceEl || !zoomFn || !simNodes.length || layoutVersion === 0) return;
+
+    const surfaceWidth = surfaceEl.clientWidth;
+    const surfaceHeight = surfaceEl.clientHeight;
+    if (surfaceWidth <= 0 || surfaceHeight <= 0) return;
+
+    const minX = Math.min(...simNodes.map((node) => node.x - NODE_HALF_WIDTH));
+    const maxX = Math.max(...simNodes.map((node) => node.x + NODE_HALF_WIDTH));
+    const minY = Math.min(...simNodes.map((node) => node.y - NODE_HALF_HEIGHT));
+    const maxY = Math.max(...simNodes.map((node) => node.y + NODE_HALF_HEIGHT));
+
+    const contentWidth = Math.max(1, maxX - minX);
+    const contentHeight = Math.max(1, maxY - minY);
+    const scale = Math.max(
+      0.35,
+      Math.min(
+        1,
+        (surfaceWidth - FIT_PADDING * 2) / contentWidth,
+        (surfaceHeight - FIT_PADDING * 2) / contentHeight
+      )
+    );
+
+    const tx = surfaceWidth / 2 - (minX + contentWidth / 2) * scale;
+    const ty = surfaceHeight / 2 - (minY + contentHeight / 2) * scale;
+    const fitTransform = d3.zoomIdentity.translate(tx, ty).scale(scale);
+
+    d3.select(surfaceEl).call(zoomFn.transform, fitTransform);
+  }, [layoutVersion, simNodes, canvasWidth, canvasHeight]);
 
   useLayoutEffect(() => {
     const sim = simulationRef.current;

@@ -21,7 +21,12 @@
     "year": "2026",
     "title": "Daydream",
     "category": "P",
-    "connections": ["work-self-adjoint-operator", "writing-local-host-software"],
+    "connections": [
+      "work-self-adjoint-operator",
+      "writing-local-host-software",
+      "project-envisiage",
+      "project-conjure-code"
+    ],
     "url": "https://www.instagram.com/p/DWBz1qvFeLo/?img_index=1",
     "description": "AI-generated Mermaid diagrams of inputted programs",
     "descriptionLinks": []
@@ -66,7 +71,7 @@
     "year": "2026",
     "title": "Transparent",
     "category": "E",
-    "connections": ["work-self-adjoint-operator"],
+    "connections": ["work-self-adjoint-operator", "research-uc-san-diego"],
     "url": "https://www.instagram.com/p/DUre8sfDHxL/?img_index=1",
     "description": "Exploring how LLMs can both generate user interfaces and explain its associated code",
     "descriptionLinks": []
@@ -129,7 +134,7 @@
     "year": "2025",
     "title": "Specter",
     "category": "P",
-    "connections": ["work-self-adjoint-operator"],
+    "connections": ["work-self-adjoint-operator", "project-scrutinize"],
     "url": "https://www.instagram.com/p/DKvAULfvXVg/?img_index=1",
     "description": "Ephemeral DeepSeek-based AI assistant made for the writing process",
     "descriptionLinks": []

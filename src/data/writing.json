@@ -2,6 +2,12 @@
   {
     "year": "2026",
     "title": "Earnestly prototyping with LLMs",
+    "connections": [
+      "project-meta-measure",
+      "project-scrutinize",
+      "work-capital-one",
+      "project-specter"
+    ],
     "url": "www.placeholder.com",
     "description": "Discussing how my GenAI experiments have informed my research interests",
     "descriptionLinks": []
