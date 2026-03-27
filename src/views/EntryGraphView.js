@@ -14,8 +14,17 @@ const COLLISION_R = 64;
 const NODE_HALF_WIDTH = 60;
 const NODE_HALF_HEIGHT = 18;
 const FIT_PADDING = 28;
+const DRAG_CLICK_DISTANCE = 6;
 /** Sync ticks before async d3-timer so first paint has positions (Strict Mode can stop the sim before rAF). */
 const PREWARM_TICKS = 160;
+
+function isFiniteNumber(value) {
+  return Number.isFinite(value);
+}
+
+function hasFinitePoint(node) {
+  return !!node && isFiniteNumber(node.x) && isFiniteNumber(node.y);
+}
 
 function edgeKey(link) {
   const s = link.source;
@@ -29,8 +38,10 @@ function straightEdgePath(link) {
   const s = link.source;
   const t = link.target;
   if (typeof s === 'string' || typeof t === 'string') return '';
+  if (!hasFinitePoint(s) || !hasFinitePoint(t)) return '';
   const dx = t.x - s.x;
   const dy = t.y - s.y;
+  if (!isFiniteNumber(dx) || !isFiniteNumber(dy)) return '';
   const isZeroLength = Math.abs(dx) < 0.001 && Math.abs(dy) < 0.001;
 
   if (isZeroLength) {
@@ -106,11 +117,17 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
     if (!simNodes.length) {
       return Math.max(viewportH, 360);
     }
-    const ys = simNodes.map((n) => n.y);
+    const ys = simNodes.map((n) => n.y).filter(isFiniteNumber);
+    if (!ys.length) {
+      return Math.max(viewportH, 360);
+    }
     const maxY = Math.max(...ys);
     const minY = Math.min(...ys);
     const span = maxY - minY;
-    return Math.max(viewportH, span + BOTTOM_PAD + 120, maxY + BOTTOM_PAD + 80);
+    if (!isFiniteNumber(maxY) || !isFiniteNumber(minY) || !isFiniteNumber(span)) {
+      return Math.max(viewportH, 360);
+    }
+    return Math.max(viewportH, span + BOTTOM_PAD + 120, maxY + BOTTOM_PAD + 80, 360);
   }, [simNodes, canvasHeight]);
 
   useEffect(() => {
@@ -160,7 +177,13 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
 
     let firstTick = true;
     const applyTick = () => {
-      setSimNodes([...simNodeObjs]);
+      // Guard against invalid simulation coordinates so we never emit NaN into styles/SVG attrs.
+      const safeNodes = simNodeObjs.map((node) => ({
+        ...node,
+        x: isFiniteNumber(node.x) ? node.x : gw / 2,
+        y: isFiniteNumber(node.y) ? node.y : gh / 2
+      }));
+      setSimNodes(safeNodes);
       setSimLinks([...linkObjs]);
       if (firstTick) {
         firstTick = false;
@@ -224,10 +247,14 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
     const surfaceHeight = surfaceEl.clientHeight;
     if (surfaceWidth <= 0 || surfaceHeight <= 0) return;
 
-    const minX = Math.min(...simNodes.map((node) => node.x - NODE_HALF_WIDTH));
-    const maxX = Math.max(...simNodes.map((node) => node.x + NODE_HALF_WIDTH));
-    const minY = Math.min(...simNodes.map((node) => node.y - NODE_HALF_HEIGHT));
-    const maxY = Math.max(...simNodes.map((node) => node.y + NODE_HALF_HEIGHT));
+    const validNodes = simNodes.filter(hasFinitePoint);
+    if (!validNodes.length) return;
+
+    const minX = Math.min(...validNodes.map((node) => node.x - NODE_HALF_WIDTH));
+    const maxX = Math.max(...validNodes.map((node) => node.x + NODE_HALF_WIDTH));
+    const minY = Math.min(...validNodes.map((node) => node.y - NODE_HALF_HEIGHT));
+    const maxY = Math.max(...validNodes.map((node) => node.y + NODE_HALF_HEIGHT));
+    if (![minX, maxX, minY, maxY].every(isFiniteNumber)) return;
 
     const contentWidth = Math.max(1, maxX - minX);
     const contentHeight = Math.max(1, maxY - minY);
@@ -254,6 +281,8 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
 
     const dragBehavior = d3
       .drag()
+      .clickDistance(DRAG_CLICK_DISTANCE)
+      .filter((event) => !event.button && event.isPrimary !== false)
       .subject((event, d) => d)
       .on('start', (event, d) => {
         if (!event.active) sim.alphaTarget(0.35).restart();
@@ -263,6 +292,7 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
       .on('drag', (event, d) => {
         const t = transformRef.current;
         const [gx, gy] = t.invert(d3.pointer(event, zoomLayer));
+        if (!isFiniteNumber(gx) || !isFiniteNumber(gy)) return;
         d.fx = gx;
         d.fy = gy;
       })
@@ -305,6 +335,8 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
   }, [defaultSelectedId, simNodes]);
 
   const selectedNode = nodeById.get(selectedId) || simNodes[0];
+  const safeGraphWidth = isFiniteNumber(graphWidth) ? Math.max(1, graphWidth) : 400;
+  const safeGraphHeight = isFiniteNumber(graphHeight) ? Math.max(1, graphHeight) : 360;
 
   const linkHighlight = (link) => {
     const s = link.source;
@@ -335,24 +367,24 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
             ref={zoomLayerRef}
             className={styles.zoomLayer}
             style={{
-              width: graphWidth,
-              height: graphHeight,
+              width: safeGraphWidth,
+              height: safeGraphHeight,
               transform: transform.toString(),
               transformOrigin: '0 0'
             }}
           >
             <svg
               className={styles.edgesSvg}
-              width={graphWidth}
-              height={graphHeight}
-              viewBox={`0 0 ${graphWidth} ${graphHeight}`}
+              width={safeGraphWidth}
+              height={safeGraphHeight}
+              viewBox={`0 0 ${safeGraphWidth} ${safeGraphHeight}`}
               preserveAspectRatio="xMidYMin meet"
               aria-hidden="true"
             >
               <rect
                 className={styles.zoomHit}
-                width={graphWidth}
-                height={graphHeight}
+                width={safeGraphWidth}
+                height={safeGraphHeight}
                 aria-hidden="true"
               />
               <g className={styles.edgeGroup}>
@@ -369,10 +401,12 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
 
             <div
               className={styles.nodeStack}
-              style={{ minHeight: `${graphHeight}px` }}
+              style={{ minHeight: `${safeGraphHeight}px` }}
             >
               {simNodes.map((node) => {
                 const isSelected = selectedNode?.id === node.id;
+                const safeNodeX = isFiniteNumber(node.x) ? node.x : safeGraphWidth / 2;
+                const safeNodeY = isFiniteNumber(node.y) ? node.y : safeGraphHeight / 2;
                 return (
                   <button
                     key={node.id}
@@ -384,8 +418,8 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
                     data-selected={isSelected}
                     data-type={node.nodeType}
                     style={{
-                      left: `${node.x}px`,
-                      top: `${node.y}px`,
+                      left: `${safeNodeX}px`,
+                      top: `${safeNodeY}px`,
                       transform: 'translate(-50%, -50%)'
                     }}
                     onClick={() => setSelectedId(node.id)}

@@ -98,26 +98,3 @@
 .column section:first-of-type h2 {
   margin-top: 0;
 }
-
-@media print {
-  .printPage {
-    width: 8.5in;
-    height: 11in;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  }
-
-  .printBackgroundImage {
-    display: block;
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-  }
-
-  .printContent {
-    display: none;
-  }
-}

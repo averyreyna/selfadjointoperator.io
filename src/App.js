@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useState } from 'react';
+import { Fragment, useEffect, useMemo, useState } from 'react';
 import Content from './Content';
+import CubePrintSheet from './components/CubePrintSheet';
 import EntryGraphView from './views/EntryGraphView';
 import { buildEntryGraph } from './utils/buildEntryGraph';
 import styles from './App.module.css';
@@ -76,27 +77,33 @@ function App() {
 
   if (viewMode === 'graph') {
     return (
-      <div className={styles.graphShell}>
-        <EntryGraphView
-          nodes={graphData.nodes}
-          edges={graphData.edges}
-          introName={graphData.introName}
-          mode={viewMode}
-          onChangeMode={handleChangeView}
-        />
-      </div>
+      <Fragment>
+        <div className={styles.graphShell}>
+          <EntryGraphView
+            nodes={graphData.nodes}
+            edges={graphData.edges}
+            introName={graphData.introName}
+            mode={viewMode}
+            onChangeMode={handleChangeView}
+          />
+        </div>
+        <CubePrintSheet />
+      </Fragment>
     );
   }
 
   if (viewMode === 'columns') {
     return (
-      <div className={styles.columnShell}>
-        <Content
-          viewMode={viewMode}
-          onChangeView={handleChangeView}
-          layout="columns"
-        />
-      </div>
+      <Fragment>
+        <div className={styles.columnShell}>
+          <Content
+            viewMode={viewMode}
+            onChangeView={handleChangeView}
+            layout="columns"
+          />
+        </div>
+        <CubePrintSheet />
+      </Fragment>
     );
   }
 
@@ -105,25 +112,28 @@ function App() {
   );
 
   return (
-    <div className={styles.all}>
-      <div className={styles.wrapper3d}>
-        <div className={`${styles.fold} ${styles.foldTop}`}>
-          <div className={styles.foldAlign}>
-            <div data-fold-content="true">{foldContent}</div>
+    <Fragment>
+      <div className={styles.all}>
+        <div className={styles.wrapper3d}>
+          <div className={`${styles.fold} ${styles.foldTop}`}>
+            <div className={styles.foldAlign}>
+              <div data-fold-content="true">{foldContent}</div>
+            </div>
           </div>
-        </div>
-        <div className={styles.fold} id="center-fold">
-          <div className={styles.foldAlign}>
-            <div data-fold-content="true" id="center-content">{foldContent}</div>
+          <div className={styles.fold} id="center-fold">
+            <div className={styles.foldAlign}>
+              <div data-fold-content="true" id="center-content">{foldContent}</div>
+            </div>
           </div>
-        </div>
-        <div className={`${styles.fold} ${styles.foldBottom}`}>
-          <div className={styles.foldAlign}>
-            <div data-fold-content="true">{foldContent}</div>
+          <div className={`${styles.fold} ${styles.foldBottom}`}>
+            <div className={styles.foldAlign}>
+              <div data-fold-content="true">{foldContent}</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <CubePrintSheet />
+    </Fragment>
   );
 }
 

@@ -92,36 +92,13 @@
 }
 
 /* ===========================
-   Print: Disable 3D, Show Flat
+   Print: hide interactive shells (cube net is in CubePrintSheet)
    =========================== */
 
 @media print {
-  .all {
-    position: static;
-    width: auto;
-    height: auto;
-    overflow: visible;
-  }
-
-  .wrapper3d {
-    perspective: none;
-    transform-style: flat;
-  }
-
-  .fold {
-    width: auto;
-    height: auto;
-    overflow: visible;
-  }
-
-  .foldTop,
-  .foldBottom {
-    display: none;
-  }
-
-  .foldAlign {
-    width: auto;
-    height: auto;
-    transform: none !important;
+  .all,
+  .graphShell,
+  .columnShell {
+    display: none !important;
   }
 }
