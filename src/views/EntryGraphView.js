@@ -9,14 +9,13 @@ import * as d3 from 'd3';
 import ViewModeToggle from '../components/ViewModeToggle';
 import styles from './EntryGraphView.module.css';
 
-const BOTTOM_PAD = 120;
 const COLLISION_R = 64;
-const NODE_HALF_WIDTH = 60;
-const NODE_HALF_HEIGHT = 18;
+const NODE_HALF_WIDTH = 28;
+const NODE_HALF_HEIGHT = 12;
 const FIT_PADDING = 28;
 const DRAG_CLICK_DISTANCE = 6;
 /** Sync ticks before async d3-timer so first paint has positions (Strict Mode can stop the sim before rAF). */
-const PREWARM_TICKS = 160;
+const PREWARM_TICKS = 300;
 
 function isFiniteNumber(value) {
   return Number.isFinite(value);
@@ -57,6 +56,17 @@ function straightEdgePath(link) {
   const y2 = t.y - dy * targetScale;
 
   return `M${x1},${y1}L${x2},${y2}`;
+}
+
+const NODE_TYPE_ICONS = {
+  project: '◆',
+  writing: '✦',
+  research: '⊕',
+  work: '▣'
+};
+
+function iconForType(nodeType) {
+  return NODE_TYPE_ICONS[nodeType] || '·';
 }
 
 function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
@@ -111,24 +121,8 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
   }, [transform]);
 
   const graphWidth = Math.max(canvasWidth, 400);
-  /** Layout height must match the visible canvas so forces center the graph in view (not mid‑air in a multi‑k‑px tall sheet). */
-  const graphHeight = useMemo(() => {
-    const viewportH = Math.max(280, canvasHeight || Math.floor(window.innerHeight * 0.42));
-    if (!simNodes.length) {
-      return Math.max(viewportH, 360);
-    }
-    const ys = simNodes.map((n) => n.y).filter(isFiniteNumber);
-    if (!ys.length) {
-      return Math.max(viewportH, 360);
-    }
-    const maxY = Math.max(...ys);
-    const minY = Math.min(...ys);
-    const span = maxY - minY;
-    if (!isFiniteNumber(maxY) || !isFiniteNumber(minY) || !isFiniteNumber(span)) {
-      return Math.max(viewportH, 360);
-    }
-    return Math.max(viewportH, span + BOTTOM_PAD + 120, maxY + BOTTOM_PAD + 80, 360);
-  }, [simNodes, canvasHeight]);
+  // Fix the simulation space to the visible canvas so nodes never push outside the viewport.
+  const graphHeight = Math.max(canvasHeight || 360, 360);
 
   useEffect(() => {
     if (!nodes.length) {
@@ -143,19 +137,45 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
         ? Math.max(280, canvasHeight)
         : Math.max(360, Math.floor(window.innerHeight * 0.42));
 
-    const simNodeObjs = nodes.map((n, i) => ({
-      ...n,
-      x: gw / 2 + Math.sin(i * 0.85) * 52 + (Math.random() - 0.5) * 34,
-      y:
-        72
-        + ((i + 0.5) / Math.max(nodes.length, 1)) * Math.max(gh - 144, 120)
-        + (Math.random() - 0.5) * 22
-    }));
+    const simNodeObjs = nodes.map((n, i) => {
+      const angle = (i / nodes.length) * 2 * Math.PI;
+      const r = Math.min(gw, gh) * 0.28;
+      return {
+        ...n,
+        x: gw / 2 + Math.cos(angle) * r + (Math.random() - 0.5) * 20,
+        y: gh / 2 + Math.sin(angle) * r + (Math.random() - 0.5) * 20
+      };
+    });
 
     const linkObjs = edges.map((e) => ({
       source: e.source,
       target: e.target
     }));
+
+    // Compute node degrees so high-degree hubs stay near center, leaves spread outward.
+    const degreeMap = new Map(simNodeObjs.map((n) => [n.id, 0]));
+    edges.forEach((e) => {
+      degreeMap.set(e.source, (degreeMap.get(e.source) || 0) + 1);
+      degreeMap.set(e.target, (degreeMap.get(e.target) || 0) + 1);
+    });
+    const maxDegree = Math.max(...degreeMap.values(), 1);
+    const cx = gw / 2;
+    const cy = gh / 2;
+    const maxRadius = Math.min(gw, gh) * 0.28;
+
+    // Custom radial force: pulls nodes toward a target radius inversely proportional to degree.
+    function radialByDegree(alpha) {
+      simNodeObjs.forEach((node) => {
+        const deg = degreeMap.get(node.id) || 0;
+        const targetR = maxRadius * Math.pow(1 - deg / maxDegree, 0.7) + 8;
+        const dx = node.x - cx;
+        const dy = node.y - cy;
+        const currentR = Math.sqrt(dx * dx + dy * dy) || 1;
+        const k = alpha * 0.35;
+        node.vx -= (dx / currentR) * (currentR - targetR) * k;
+        node.vy -= (dy / currentR) * (currentR - targetR) * k;
+      });
+    }
 
     const simulation = d3
       .forceSimulation(simNodeObjs)
@@ -164,14 +184,18 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
         d3
           .forceLink(linkObjs)
           .id((d) => d.id)
-          .distance(100)
-          .strength(0.5)
+          .distance((link) => {
+            const sd = degreeMap.get(link.source.id ?? link.source) || 1;
+            const td = degreeMap.get(link.target.id ?? link.target) || 1;
+            const minDeg = Math.min(sd, td);
+            return 90 + (1 / minDeg) * 50;
+          })
+          .strength(0.4)
       )
-      .force('charge', d3.forceManyBody().strength(-325))
-      .force('center', d3.forceCenter(gw / 2, gh / 2))
+      .force('charge', d3.forceManyBody().strength(-350))
+      .force('center', d3.forceCenter(cx, cy).strength(0.08))
       .force('collide', d3.forceCollide(COLLISION_R))
-      .force('y', d3.forceY(gh / 2).strength(0.07))
-      .force('x', d3.forceX(gw / 2).strength(0.03));
+      .force('radial', radialByDegree);
 
     simulationRef.current = simulation;
 
@@ -218,7 +242,7 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
 
     const zoomFn = d3
       .zoom()
-      .scaleExtent([0.35, 2.6])
+      .scaleExtent([0.2, 2.6])
       .filter((event) => {
         if (event.target.closest?.('button')) {
           return event.type === 'wheel';
@@ -432,12 +456,12 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
                         .join(' — ')
                     }
                   >
-                    <span className={styles.nodeBadge}>{node.nodeType}</span>
-                    <span className={styles.nodeTitle}>{node.label}</span>
-                    {(node.year || node.category) && (
-                      <span className={styles.nodeMeta}>
-                        {[node.year, node.category].filter(Boolean).join(' · ')}
-                      </span>
+                    <span className={styles.nodeHeader}>
+                      <span className={styles.nodeBadge} aria-hidden="true">{iconForType(node.nodeType)}</span>
+                      <span className={styles.nodeTitle}>{node.label}</span>
+                    </span>
+                    {node.year && (
+                      <span className={styles.nodeMeta}>{node.year}</span>
                     )}
                   </button>
                 );

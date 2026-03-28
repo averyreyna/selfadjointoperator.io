@@ -329,4 +329,8 @@
     page-break-after: avoid;
     page-break-inside: avoid;
   }
+
+  :global(body[data-view='columns']) .sheet {
+    display: none;
+  }
 }

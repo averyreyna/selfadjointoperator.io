@@ -1,6 +1,15 @@
 [
   {
     "year": "2026",
+    "title": "Convoy v1.75",
+    "category": "P",
+    "connections": ["work-self-adjoint-operator", "writing-node-types-in-convoy", "project-convoy"],
+    "url": "www.placeholder.com",
+    "description": "Node-based data wrangling canvas environment",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2026",
     "title": "CoupCats",
     "category": "FR",
     "connections": ["research-university-of-kentucky", "project-coupview"],

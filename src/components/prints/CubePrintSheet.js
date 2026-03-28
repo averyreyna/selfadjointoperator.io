@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
 import QRCode from 'qrcode';
 
-import intro from '../data/intro.json';
-import projects from '../data/projects.json';
-import writing from '../data/writing.json';
-import research from '../data/research.json';
-import work from '../data/work.json';
-import interests from '../data/interests.json';
-import WorkEntry from './WorkEntry';
+import intro from '../../data/intro.json';
+import projects from '../../data/projects.json';
+import writing from '../../data/writing.json';
+import research from '../../data/research.json';
+import work from '../../data/work.json';
+import interests from '../../data/interests.json';
+import WorkEntry from '../WorkEntry';
 
 import styles from './CubePrintSheet.module.css';
 

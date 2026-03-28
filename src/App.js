@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useMemo, useState } from 'react';
 import Content from './Content';
-import CubePrintSheet from './components/CubePrintSheet';
+import CubePrintSheet from './components/prints/CubePrintSheet';
+import MobiusStripPrintSheet from './components/prints/MobiusStripPrintSheet';
 import EntryGraphView from './views/EntryGraphView';
 import { buildEntryGraph } from './utils/buildEntryGraph';
 import styles from './App.module.css';
@@ -47,6 +48,10 @@ function App() {
     window.history.replaceState({}, '', url);
     window.scrollTo(0, 0);
   };
+
+  useEffect(() => {
+    document.body.dataset.view = viewMode;
+  }, [viewMode]);
 
   useEffect(() => {
     if (viewMode !== 'list') {
@@ -103,6 +108,7 @@ function App() {
           />
         </div>
         <CubePrintSheet />
+        <MobiusStripPrintSheet />
       </Fragment>
     );
   }
