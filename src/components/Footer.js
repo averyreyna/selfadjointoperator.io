@@ -1,4 +1,4 @@
-function Footer({ name, footerLinks }) {
+function Footer({ name, footerLinks, showInspiredBy = true }) {
   const year = new Date().getFullYear();
 
   return (
@@ -18,12 +18,14 @@ function Footer({ name, footerLinks }) {
       )}
       <br />
       <p className="copyright">© {year} {name.toUpperCase()}</p>
-      <p className="copyright">
-        INSPIRED BY:{' '}
-        <a href="https://sharonzheng.com/" target="_blank" rel="noopener noreferrer">
-          SHARON ZHENG
-        </a>
-      </p>
+      {showInspiredBy && (
+        <p className="copyright">
+          INSPIRED BY:{' '}
+          <a href="https://sharonzheng.com/" target="_blank" rel="noopener noreferrer">
+            SHARON ZHENG
+          </a>
+        </p>
+      )}
       <p className="copyright">LAST UPDATED: 2026-04</p>
     </footer>
   );

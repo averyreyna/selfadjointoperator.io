@@ -43,7 +43,7 @@ function dedupeId(candidate, usedIds) {
   return nextId;
 }
 
-/** Default seed positions; EntryGraphView lays out nodes with d3-force. */
+// fallback x/y on each node; the graph view overwrites x/y when seeding the force sim but keeps a stable shape.
 const COLUMN_X = 220;
 const ROW_START_Y = 100;
 const ROW_GAP = 150;
@@ -94,6 +94,7 @@ export function buildEntryGraph() {
     });
   });
 
+  // no connection metadata: chain nodes so the graph isn’t empty on first load.
   if (explicitEdges.length === 0) {
     const fallbackEdges = [];
     nodes.forEach((node, index) => {

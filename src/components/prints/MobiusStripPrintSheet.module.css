@@ -1,4 +1,8 @@
-/* Print-only sheet: hidden on screen, visible in @media print for columns view only */
+/*
+ * print layout for the physical self adjoint operator artifact (möbius strip résumé).
+ * work in progress — not final production art; kept in-repo for cutting and assembly reference.
+ */
+
 .sheet {
   display: none;
   box-sizing: border-box;
@@ -34,7 +38,6 @@
   gap: 0.12in;
 }
 
-/* The strip: a long horizontal rectangle — cut it out and twist one end */
 .strip {
   display: flex;
   flex-direction: row;
@@ -75,7 +78,6 @@
   overflow: hidden;
 }
 
-/* Segment 1 — Identity */
 .name {
   font-family: var(--font-heading);
   font-size: 0.58rem;
@@ -108,7 +110,6 @@
   flex-shrink: 0;
 }
 
-/* Shared segment content */
 .segHead {
   font-family: var(--font-heading);
   font-size: 0.48rem;
@@ -163,7 +164,6 @@
   font-style: italic;
 }
 
-/* Half-twist annotation to the right of the strip */
 .twistAnnotation {
   flex-shrink: 0;
   display: flex;
@@ -185,7 +185,6 @@
   white-space: nowrap;
 }
 
-/* Instructions */
 .instructions {
   flex: 0 0 auto;
   max-width: 4.5in;

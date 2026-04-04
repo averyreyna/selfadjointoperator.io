@@ -7,7 +7,7 @@ function EntryList({ entries, type, className }) {
     <article>
       <ul className={className || ''}>
         {entries.map((entry, i) => (
-          <Component key={i} entry={entry} />
+          <Component key={i} entry={entry} type={type} />
         ))}
       </ul>
     </article>

@@ -6,6 +6,8 @@ import EntryGraphView from './views/EntryGraphView';
 import { buildEntryGraph } from './utils/buildEntryGraph';
 import styles from './App.module.css';
 
+// cube/möbius print sheets are always mounted (hidden on screen) so @media print can still output physical-layout pages.
+// list layout only: stretch document height so wheel scroll moves content through the 3d fold (see handleScroll).
 function calcValues() {
   const centerContent = document.getElementById('center-content');
   const centerFold = document.getElementById('center-fold');
@@ -81,10 +83,10 @@ function App() {
   }, [viewMode]);
 
   if (viewMode === 'graph') {
-    return (
-      <Fragment>
-        <div className={styles.graphShell}>
-          <EntryGraphView
+  return (
+    <Fragment>
+      <div className={styles.graphShell}>
+        <EntryGraphView
             nodes={graphData.nodes}
             edges={graphData.edges}
             introName={graphData.introName}

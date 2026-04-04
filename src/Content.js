@@ -11,10 +11,7 @@ import Footer from './components/Footer';
 import ViewModeToggle from './components/ViewModeToggle';
 import styles from './Content.module.css';
 
-/**
- * renders plain text with inline links by matching link text
- * within the string and replacing with <a> tags.
- */
+// walks the string in link order; each link.text replaces its first remaining occurrence only (not a global regex).
 function renderTextWithLinks(text, links) {
   if (!links || links.length === 0) {
     return text;
@@ -54,9 +51,14 @@ function IntroArticle() {
   return (
     <article>
       <ul>
-        <li>{intro.tagline}</li>
         {intro.bullets?.map((bullet, i) => {
-          const sup = { Experiments: 'E', 'Field Research': 'FR', Prototypes: 'P' }[bullet];
+          const sup = {
+            Experiments: 'E',
+            'Field Research': 'FR',
+            'Internet Art': 'IA',
+            Prototypes: 'P',
+            'Work in Progress': 'WIP',
+          }[bullet];
           return (
             <li key={i}>
               {bullet}
@@ -74,7 +76,7 @@ function Content({ viewMode = 'list', onChangeView = () => {}, layout = 'list' }
     return (
       <main className={`${styles.columnMain} site-columns`}>
         <header className={styles.columnsHeader}>
-          <h1 className={styles.nameRow}>
+          <h1 className={styles.columnsTitle}>
             <span>{intro.name}</span>
             <ViewModeToggle mode={viewMode} onChange={onChangeView} />
           </h1>
@@ -106,7 +108,7 @@ function Content({ viewMode = 'list', onChangeView = () => {}, layout = 'list' }
             </div>
             <div className={styles.column}>
               <Section title="Writing">
-                <EntryList entries={writing} type="project" />
+                <EntryList entries={writing} type="writing" />
               </Section>
               <Section title="Interests">
                 <article>
@@ -115,7 +117,7 @@ function Content({ viewMode = 'list', onChangeView = () => {}, layout = 'list' }
                   </div>
                 </article>
               </Section>
-              <Footer name={intro.name} footerLinks={intro.footerLinks} />
+              <Footer name={intro.name} footerLinks={intro.footerLinks} showInspiredBy={false} />
             </div>
           </div>
         </div>
@@ -153,7 +155,7 @@ function Content({ viewMode = 'list', onChangeView = () => {}, layout = 'list' }
           </Section>
 
           <Section title="Writing">
-            <EntryList entries={writing} type="project" />
+            <EntryList entries={writing} type="writing" />
           </Section>
 
           <Section title="Interests">

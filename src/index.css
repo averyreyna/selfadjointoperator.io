@@ -1,22 +1,14 @@
-/* ===========================
-   Custom Properties
-   =========================== */
-
 :root {
   --main-bg-color: #4A1552;
   --font-body: 'ABC ROM', system-ui, sans-serif;
   --font-heading: 'ABC ROM Mono', ui-monospace, monospace;
 }
 
-/* ===========================
-   Base Styles
-   =========================== */
-
 * {
   box-sizing: border-box;
 }
 
-/* Hide scrollbars everywhere while keeping scroll behavior (all views / overflow regions) */
+/* hide scrollbars everywhere but keep scrolling (column panes, graph, etc. still overflow). */
 html,
 body,
 * {
@@ -56,7 +48,6 @@ hr {
   border: 0.5px solid #fff;
 }
 
-/* Section underlines don’t run flush to the column / viewport edge */
 .site-list section hr,
 .site-columns section hr {
   width: calc(100% - 1.25rem);
@@ -66,7 +57,7 @@ hr {
   box-sizing: border-box;
 }
 
-/* List/resume layout only — graph view uses plain header/section without these constraints. */
+/* fold/list layout only: absolutely positioned name block: graph and columns views override this. */
 .site-list h1 {
   position: absolute;
   bottom: 0;
@@ -106,6 +97,11 @@ ul li sup {
   font-size: 0.6em;
 }
 
+h2 sup {
+  margin-left: 2px;
+  font-size: 0.6em;
+}
+
 .site-list header {
   height: 88vh;
   position: relative;
@@ -128,7 +124,6 @@ ul li sup {
   line-height: 1.4;
 }
 
-/* Columns view: full-viewport horizontal sections (not fold list layout) */
 .site-columns {
   font-size: clamp(0.65rem, 1.85vw, 0.95rem);
 }
@@ -160,10 +155,6 @@ ul li sup {
   padding-bottom: 1.5rem;
 }
 
-/* ===========================
-   Mobile Breakpoint
-   =========================== */
-
 @media (max-width: 767px) {
   body {
     font-size: 0.9rem;
@@ -173,7 +164,7 @@ ul li sup {
     height: 40vh;
   }
 
-  /* header h1 beats Content.module.css .nameRow specificity so layout isn’t reverted */
+  /* content.module .namerow wins specificity; re-apply flex row so the toggle stays beside the name on small screens. */
   .site-list header h1 {
     left: 0;
     right: 0;
@@ -194,23 +185,11 @@ ul li sup {
   }
 
   .site-columns header h1 {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
     width: 100%;
-    max-width: 100%;
-    word-spacing: 0.22em;
-    white-space: nowrap;
+    justify-content: space-between;
     font-size: clamp(0.62rem, 3.6vw, 0.82rem);
-    box-sizing: border-box;
   }
 }
-
-/* ===========================
-   Print Styles
-   =========================== */
 
 @page {
   size: letter;

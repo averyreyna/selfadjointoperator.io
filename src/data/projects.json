@@ -1,10 +1,19 @@
 [
   {
     "year": "2026",
-    "title": "Convoy v1.75",
+    "title": "Hermitian Matrix",
+    "category": "WIP",
+    "connections": ["work-self-adjoint-operator"],
+    "url": "www.placeholder.com",
+    "description": "My always-changing learning materials",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2026",
+    "title": "Convoy v1.5",
     "category": "P",
     "connections": ["work-self-adjoint-operator", "writing-node-types-in-convoy", "project-convoy"],
-    "url": "www.placeholder.com",
+    "url": "https://convoy-one.vercel.app",
     "description": "Node-based data wrangling canvas environment",
     "descriptionLinks": []
   },
@@ -19,11 +28,29 @@
   },
   {
     "year": "2026",
+    "title": "Physical SAO",
+    "category": "WIP",
+    "connections": ["work-self-adjoint-operator"],
+    "url": "www.placeholder.com",
+    "description": "Printable portfolio representations",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2026",
+    "title": "Realize",
+    "category": "WIP",
+    "connections": ["work-self-adjoint-operator"],
+    "url": "www.placeholder.com",
+    "description": "Frequency visualizations with Anime.js",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2026",
     "title": "Conjure Code",
     "category": "E",
     "connections": ["work-self-adjoint-operator"],
     "url": "www.placeholder.com",
-    "description": "Granular visualizations of imported repositories with aperture-style zoom-in UX",
+    "description": "Granular visualizations of imported repositories with aperture-style UX",
     "descriptionLinks": []
   },
   {
@@ -154,7 +181,7 @@
     "category": "P",
     "connections": ["work-self-adjoint-operator"],
     "url": "https://www.instagram.com/p/DKGRo-yozpb/?img_index=1",
-    "description": "Evaluating Claude Sonnet 3.7's ability to assess research ideas from across all disciplines",
+    "description": "Evaluating Claude 3.7 Sonnet's ability to assess research ideas from across all disciplines",
     "descriptionLinks": []
   },
   {

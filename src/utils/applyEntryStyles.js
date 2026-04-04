@@ -1,5 +1,4 @@
-// centralized style logic for entry types
-
+// maps list types to global utility classes from index.css (e.g. tight lists for work/research).
 export function getEntryClassName(type) {
   switch (type) {
     case 'work':

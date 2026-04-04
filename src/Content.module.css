@@ -18,6 +18,25 @@
   gap: 4px;
 }
 
+.columnsTitle {
+  position: static;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 8px;
+  word-spacing: normal;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 767px) {
+  .columnsTitle {
+    width: 100%;
+    justify-content: space-between;
+    font-size: clamp(0.62rem, 3.6vw, 0.82rem);
+  }
+}
+
 .tight li {
   margin-bottom: 10px;
 }
@@ -29,15 +48,21 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding: 20px 0 20px 14px;
+  padding: 28px 24px 20px;
 }
 
 .columnsHeader {
   flex-shrink: 0;
   position: relative;
-  z-index: 1;
-  padding-right: 20px;
-  padding-bottom: 8px;
+  z-index: 3;
+  padding-bottom: 16px;
+  margin-bottom: 4px;
+  background: linear-gradient(
+    to bottom,
+    rgba(74, 21, 82, 0.98),
+    rgba(74, 21, 82, 0.85),
+    transparent
+  );
 }
 
 .columnsScroller {
@@ -62,7 +87,7 @@
   box-sizing: border-box;
 }
 
-/* Narrower track for intro so the next columns sit closer (global .column in index.css can’t target this hash). */
+/* narrower intro column than the rest: css module hash means shared global column rules in index.css don’t apply here. */
 .introColumn {
   flex: 0 0 min(30ch, 58vw);
   width: min(30ch, 58vw);
@@ -93,8 +118,17 @@
   -webkit-overflow-scrolling: touch;
 }
 
-/* First section title in each column aligns with intro list (fixes rule that never matched .column in index.css). */
 .introColumn section:first-of-type h2,
 .column section:first-of-type h2 {
   margin-top: 0;
+}
+
+@media (max-width: 767px) {
+  .columnMain {
+    padding: 14px 10px 16px;
+  }
+
+  .columnsHeader {
+    padding-bottom: 18px;
+  }
 }

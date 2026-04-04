@@ -14,7 +14,7 @@ const NODE_HALF_WIDTH = 28;
 const NODE_HALF_HEIGHT = 12;
 const FIT_PADDING = 28;
 const DRAG_CLICK_DISTANCE = 6;
-/** Sync ticks before async d3-timer so first paint has positions (Strict Mode can stop the sim before rAF). */
+// sync ticks before the async d3 timer so strict mode / early unmount doesn’t leave a blank first paint.
 const PREWARM_TICKS = 300;
 
 function isFiniteNumber(value) {
@@ -47,6 +47,7 @@ function straightEdgePath(link) {
     return `M${s.x},${s.y}L${t.x},${t.y}`;
   }
 
+  // trim the segment to the node “radius” so lines meet the pill edges instead of the center point.
   const sourceScale = 1 / Math.max(Math.abs(dx) / NODE_HALF_WIDTH, Math.abs(dy) / NODE_HALF_HEIGHT);
   const targetScale = 1 / Math.max(Math.abs(dx) / NODE_HALF_WIDTH, Math.abs(dy) / NODE_HALF_HEIGHT);
 
@@ -58,6 +59,11 @@ function straightEdgePath(link) {
   return `M${x1},${y1}L${x2},${y2}`;
 }
 
+const NODE_CATEGORY_ICONS = {
+  IA: '◇',
+  WIP: '◌',
+};
+
 const NODE_TYPE_ICONS = {
   project: '◆',
   writing: '✦',
@@ -65,8 +71,17 @@ const NODE_TYPE_ICONS = {
   work: '▣'
 };
 
-function iconForType(nodeType) {
-  return NODE_TYPE_ICONS[nodeType] || '·';
+const LEGEND_ENTRIES = [
+  { icon: '◇', label: 'Internet Art' },
+  { icon: '◆', label: 'Project' },
+  { icon: '⊕', label: 'Research' },
+  { icon: '▣', label: 'Work' },
+  { icon: '◌', label: 'Work in Progress' },
+  { icon: '✦', label: 'Writing' },
+];
+
+function iconForNode(node) {
+  return NODE_CATEGORY_ICONS[node.category] || NODE_TYPE_ICONS[node.nodeType] || '·';
 }
 
 function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
@@ -121,7 +136,7 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
   }, [transform]);
 
   const graphWidth = Math.max(canvasWidth, 400);
-  // Fix the simulation space to the visible canvas so nodes never push outside the viewport.
+  // force layout height tracks the visible canvas so nodes aren’t laid out in a taller box than you see.
   const graphHeight = Math.max(canvasHeight || 360, 360);
 
   useEffect(() => {
@@ -152,7 +167,6 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
       target: e.target
     }));
 
-    // Compute node degrees so high-degree hubs stay near center, leaves spread outward.
     const degreeMap = new Map(simNodeObjs.map((n) => [n.id, 0]));
     edges.forEach((e) => {
       degreeMap.set(e.source, (degreeMap.get(e.source) || 0) + 1);
@@ -163,7 +177,7 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
     const cy = gh / 2;
     const maxRadius = Math.min(gw, gh) * 0.28;
 
-    // Custom radial force: pulls nodes toward a target radius inversely proportional to degree.
+    // hubs (high degree) get pulled inward; low-degree nodes sit farther out for readable leaf placement.
     function radialByDegree(alpha) {
       simNodeObjs.forEach((node) => {
         const deg = degreeMap.get(node.id) || 0;
@@ -201,7 +215,7 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
 
     let firstTick = true;
     const applyTick = () => {
-      // Guard against invalid simulation coordinates so we never emit NaN into styles/SVG attrs.
+      // d3 can briefly produce NaN; never forward that into react styles or path attrs.
       const safeNodes = simNodeObjs.map((node) => ({
         ...node,
         x: isFiniteNumber(node.x) ? node.x : gw / 2,
@@ -315,6 +329,7 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
       })
       .on('drag', (event, d) => {
         const t = transformRef.current;
+        // pointer is in screen space; invert current zoom so fx/fy stay in graph coordinates.
         const [gx, gy] = t.invert(d3.pointer(event, zoomLayer));
         if (!isFiniteNumber(gx) || !isFiniteNumber(gy)) return;
         d.fx = gx;
@@ -457,7 +472,7 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
                     }
                   >
                     <span className={styles.nodeHeader}>
-                      <span className={styles.nodeBadge} aria-hidden="true">{iconForType(node.nodeType)}</span>
+                      <span className={styles.nodeBadge} aria-hidden="true">{iconForNode(node)}</span>
                       <span className={styles.nodeTitle}>{node.label}</span>
                     </span>
                     {node.year && (
@@ -469,6 +484,14 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
             </div>
           </div>
         </div>
+        <aside className={styles.legend} aria-label="Node type key">
+          {LEGEND_ENTRIES.map(({ icon, label }) => (
+            <div key={label} className={styles.legendRow}>
+              <span className={styles.legendIcon} aria-hidden="true">{icon}</span>
+              <span className={styles.legendLabel}>{label}</span>
+            </div>
+          ))}
+        </aside>
       </section>
     </main>
   );

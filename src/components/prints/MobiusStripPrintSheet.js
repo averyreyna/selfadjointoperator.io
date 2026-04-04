@@ -11,10 +11,17 @@ import WorkEntry from '../WorkEntry';
 
 import styles from './MobiusStripPrintSheet.module.css';
 
+/*
+ * print layout for the physical self adjoint operator artifact (möbius strip résumé).
+ * work in progress — not final production art; kept in-repo for cutting and assembly reference.
+ */
+
 const CATEGORY_SUP = {
   E: 'E',
   FR: 'FR',
+  IA: 'IA',
   P: 'P',
+  WIP: 'WIP',
 };
 
 const PRINT_WORK_AND_RESEARCH = [

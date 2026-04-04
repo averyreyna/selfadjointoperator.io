@@ -11,17 +11,25 @@ import WorkEntry from '../WorkEntry';
 
 import styles from './CubePrintSheet.module.css';
 
+/*
+ * print layouts for the physical self adjoint operator artifact (folded cube / qr faces).
+ * work in progress — not final production art; kept in-repo for cutting, folding, and assembly reference.
+ */
+
 const BULLET_SUP = {
   Experiments: 'E',
   'Field Research': 'FR',
+  'Internet Art': 'IA',
   Prototypes: 'P',
+  'Work in Progress': 'WIP',
 };
 
-/** Matches `projects.json` category field */
 const CATEGORY_SUP = {
   E: 'E',
   FR: 'FR',
+  IA: 'IA',
   P: 'P',
+  WIP: 'WIP',
 };
 
 const PRINT_WORK_AND_RESEARCH = [
