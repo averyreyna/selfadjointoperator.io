@@ -1,28 +1,28 @@
-/* ===========================
-   Custom Properties
-   =========================== */
-
 :root {
   --main-bg-color: #4A1552;
   --font-body: 'ABC ROM', system-ui, sans-serif;
   --font-heading: 'ABC ROM Mono', ui-monospace, monospace;
 }
 
-/* ===========================
-   Base Styles
-   =========================== */
-
 * {
   box-sizing: border-box;
 }
 
-html {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and old Edge */
+/* hide scrollbars everywhere but keep scrolling (column panes, graph, etc. still overflow). */
+html,
+body,
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-html::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera, new Edge */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  background: transparent;
 }
 
 body {
@@ -48,7 +48,17 @@ hr {
   border: 0.5px solid #fff;
 }
 
-h1 {
+.site-list section hr,
+.site-columns section hr {
+  width: calc(100% - 1.25rem);
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+/* fold/list layout only: absolutely positioned name block: graph and columns views override this. */
+.site-list h1 {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -63,7 +73,7 @@ h1, h2, h3, h4 {
   font-family: var(--font-heading);
 }
 
-h2 {
+.site-list h2 {
   margin-top: 120px;
 }
 
@@ -78,7 +88,7 @@ ul li {
   margin-left: -15px;
 }
 
-section ul li {
+.site-list section ul li {
   margin-bottom: 20px;
 }
 
@@ -87,54 +97,99 @@ ul li sup {
   font-size: 0.6em;
 }
 
-header {
+h2 sup {
+  margin-left: 2px;
+  font-size: 0.6em;
+}
+
+.site-list header {
   height: 88vh;
   position: relative;
 }
 
-section, header {
+.site-list section,
+.site-list header {
   margin-bottom: 50px;
 }
 
-footer {
+.site-list footer {
   margin: 100px 0 200px;
   padding-bottom: 300px;
 }
 
-footer .copyright {
+.site-list footer .copyright,
+.site-columns footer .copyright {
   font-family: var(--font-heading);
-  font-size: 0.6em;
+  font-size: 0.52em;
+  line-height: 1.4;
 }
 
-/* ===========================
-   Mobile Breakpoint
-   =========================== */
+.site-columns {
+  font-size: clamp(0.65rem, 1.85vw, 0.95rem);
+}
+
+.site-columns h1 {
+  position: static;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  word-spacing: normal;
+}
+
+.site-columns header {
+  height: auto;
+  margin-bottom: 0;
+}
+
+.site-columns section,
+.site-columns header {
+  margin-bottom: 0;
+}
+
+.site-columns h2 {
+  margin-top: 1.25rem;
+}
+
+.site-columns footer {
+  margin: 1.75rem 0 0;
+  padding-bottom: 1.5rem;
+}
 
 @media (max-width: 767px) {
   body {
     font-size: 0.9rem;
   }
 
-  header {
+  .site-list header {
     height: 40vh;
   }
 
-  h1 {
-    word-spacing: 18px;
+  /* content.module .namerow wins specificity; re-apply flex row so the toggle stays beside the name on small screens. */
+  .site-list header h1 {
+    left: 0;
+    right: 0;
+    width: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    word-spacing: 0.22em;
+    white-space: nowrap;
+    font-size: clamp(0.62rem, 3.6vw, 0.82rem);
+    box-sizing: border-box;
   }
 
-  h1 span {
-    border-bottom: 2px solid #fff;
-  }
-
-  footer {
+  .site-list footer {
     padding-bottom: 100px;
   }
-}
 
-/* ===========================
-   Print Styles
-   =========================== */
+  .site-columns header h1 {
+    width: 100%;
+    justify-content: space-between;
+    font-size: clamp(0.62rem, 3.6vw, 0.82rem);
+  }
+}
 
 @page {
   size: letter;

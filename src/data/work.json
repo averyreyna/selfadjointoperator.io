@@ -1,12 +1,18 @@
 [
   {
-    "year": "2023 — 20XX",
+    "year": "2025 — 20XX",
+    "company": "Self Adjoint Operator",
+    "role": "Design Engineer"
+  },
+  {
+    "year": "2023 — 2026",
     "company": "Capital One",
-    "role": "CODA Associate → Software Engineer"
+    "role": "Software Engineer"
   },
   {
     "year": "2020 — 2023",
     "company": "Various Companies",
-    "role": "Various Internships"
+    "role": "Various Internships",
+    "connections": ["research-university-of-central-florida"]
   }
 ]

@@ -1,0 +1,32 @@
+[
+  {
+    "year": "2026",
+    "title": "Prototyping with LLMs",
+    "category": "WIP",
+    "connections": [
+      "project-meta-measure",
+      "project-scrutinize",
+      "work-capital-one",
+      "project-specter"
+    ],
+    "url": "www.placeholder.com",
+    "description": "Discussing how my GenAI experiments have informed my research interests",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2026",
+    "title": "Node Types in Convoy",
+    "category": "WIP",
+    "url": "www.placeholder.com",
+    "description": "Development process of creating novel user interactions for a prototype",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2026",
+    "title": "Local(host) Software",
+    "category": "WIP",
+    "url": "www.placeholder.com",
+    "description": "Musings on ad-hoc software and developing your own app ecosystem",
+    "descriptionLinks": []
+  }
+]

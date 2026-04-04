@@ -1,0 +1,336 @@
+/*
+ * print layouts for the physical self adjoint operator artifact (folded cube / qr faces).
+ * work in progress — not final production art; kept in-repo for cutting, folding, and assembly reference.
+ */
+
+.sheet {
+  display: none;
+  box-sizing: border-box;
+  width: 8.5in;
+  height: 11in;
+  padding: 0.2in 0.16in 0.22in;
+  margin: 0;
+  background: #fff;
+  color: #111;
+  font-family: var(--font-body);
+  font-size: 6.5pt;
+  line-height: 1.22;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.sheetInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2in;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.netWrap {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.instructions {
+  flex: 0 0 auto;
+  max-width: 4.25in;
+  padding: 0;
+  font-size: 6.5pt;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.instructions h2 {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0 0 0.35em;
+  color: #222;
+}
+
+.instructions ol {
+  margin: 0 auto;
+  padding: 0;
+  list-style-position: inside;
+  text-align: left;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.instructions li {
+  margin-bottom: 0.35em;
+}
+
+.net {
+  --face: 1.74in;
+  --tab: 0.3in;
+  display: grid;
+  grid-template-columns: var(--tab) var(--face) var(--face) var(--face) var(--tab);
+  grid-template-rows: var(--tab) var(--face) var(--face) var(--face) var(--face) var(--tab);
+  grid-template-areas:
+    '. . tabT . .'
+    '. . top . .'
+    'tabL left center right tabR'
+    '. . bottom . .'
+    '. . sixth . .'
+    '. . tabB . .';
+  border: none;
+  background: transparent;
+}
+
+.tab {
+  background: #fff;
+  border: 0.75pt dashed #333;
+  box-sizing: border-box;
+}
+
+.tabT {
+  grid-area: tabT;
+  border-bottom: none;
+}
+
+.tabB {
+  grid-area: tabB;
+  border-top: none;
+}
+
+.tabL {
+  grid-area: tabL;
+  border-right: none;
+}
+
+.tabR {
+  grid-area: tabR;
+  border-left: none;
+}
+
+.face {
+  position: relative;
+  box-sizing: border-box;
+  background: var(--main-bg-color);
+  color: #fff;
+  border: 0.75pt dashed rgba(255, 255, 255, 0.65);
+  overflow: hidden;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.faceInner {
+  position: absolute;
+  inset: 0;
+  padding: 0.08in 0.09in;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  min-height: 0;
+}
+
+.face h3 {
+  font-family: var(--font-heading);
+  font-size: 0.5rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0 0 0.2em;
+  flex-shrink: 0;
+  line-height: 1.15;
+}
+
+.faceBody {
+  margin: 0;
+  font-size: 0.92em;
+  line-height: 1.22;
+  word-break: break-word;
+  hyphens: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.faceTop .faceBody {
+  font-size: 0.78em;
+  line-height: 1.18;
+}
+
+.projectCatSup {
+  font-size: 0.65em;
+  vertical-align: 0.18em;
+  margin-left: 0.02em;
+}
+
+.faceBodyList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.92em;
+  line-height: 1.2;
+}
+
+.faceBodyList li {
+  margin-bottom: 0.1em;
+  line-height: 1.2;
+}
+
+/* default sup metrics extend past the line box; faces use overflow:hidden so we tighten this. */
+.faceBodyList sup {
+  font-size: 0.68em;
+  line-height: 0;
+  vertical-align: super;
+  position: relative;
+  top: -0.06em;
+}
+
+.faceBodyList i {
+  font-style: italic;
+}
+
+.meta {
+  font-size: 0.9em;
+  opacity: 0.92;
+}
+
+.centerName {
+  font-family: var(--font-heading);
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0 0 0.14em;
+  line-height: 1.12;
+  text-align: left;
+  width: 100%;
+}
+
+.centerTag {
+  font-size: 0.88em;
+  margin: 0 0 0.22em;
+  opacity: 0.95;
+  line-height: 1.2;
+  text-align: left;
+  width: 100%;
+}
+
+.centerBullets {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.92em;
+  line-height: 1.22;
+  text-align: left;
+  width: 100%;
+}
+
+.centerBullets li {
+  margin-bottom: 0.08em;
+  padding-left: 0;
+  margin-left: 0;
+  text-align: left;
+}
+
+.centerBullets sup {
+  font-size: 0.68em;
+  vertical-align: 0.1em;
+}
+
+.qrWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  flex: 1;
+}
+
+.qr {
+  width: 1.08in;
+  height: 1.08in;
+  image-rendering: pixelated;
+  flex-shrink: 0;
+}
+
+/* 180° on the flat sheet so copy reads correctly once that face folds into place. */
+.faceTop .faceInner {
+  transform: rotate(180deg);
+  transform-origin: center center;
+}
+
+.faceRight {
+  grid-area: right;
+  overflow: visible;
+}
+
+.faceRight .faceInner {
+  transform: rotate(-90deg);
+  transform-origin: center center;
+  justify-content: center;
+}
+
+.faceTop {
+  grid-area: top;
+}
+
+.faceLeft {
+  grid-area: left;
+}
+
+.faceCenter {
+  grid-area: center;
+}
+
+.faceCenter .faceInner {
+  align-items: flex-start;
+}
+
+.faceBottom {
+  grid-area: bottom;
+}
+
+.faceBottom .faceInner {
+  gap: 0.03in;
+  align-items: stretch;
+  text-align: left;
+  /* extra horizontal inset so year sups and wrapped lines stay inside overflow:hidden on the face. */
+  padding-left: 0.1in;
+  padding-right: 0.09in;
+}
+
+.faceBottom h3 + .faceBodyList {
+  margin-top: 0;
+}
+
+.faceBottom .faceBodyList {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.faceBottom .faceBodyList li {
+  text-align: left;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.faceSixth {
+  grid-area: sixth;
+}
+
+@media print {
+  .sheet {
+    display: block;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  :global(body[data-view='columns']) .sheet {
+    display: none;
+  }
+}

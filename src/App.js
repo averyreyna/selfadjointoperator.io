@@ -1,28 +1,26 @@
-import { useEffect } from 'react';
+import { Fragment, useEffect, useMemo, useState } from 'react';
 import Content from './Content';
+import CubePrintSheet from './components/prints/CubePrintSheet';
+import MobiusStripPrintSheet from './components/prints/MobiusStripPrintSheet';
+import EntryGraphView from './views/EntryGraphView';
+import { buildEntryGraph } from './utils/buildEntryGraph';
 import styles from './App.module.css';
 
-/**
- * measures center-content height vs center-fold height,
- * sets document.body.style.height to create the scroll range.
- */
+// cube/möbius print sheets are always mounted (hidden on screen) so @media print can still output physical-layout pages.
+// list layout only: stretch document height so wheel scroll moves content through the 3d fold (see handleScroll).
 function calcValues() {
   const centerContent = document.getElementById('center-content');
   const centerFold = document.getElementById('center-fold');
 
   if (!centerContent || !centerFold) return;
 
-  const contentHeight = centerContent.offsetHeight;
-  const foldHeight = centerFold.offsetHeight;
-  const overflow = contentHeight - foldHeight;
-
+  const contentHeight = centerContent.scrollHeight;
+  const foldHeight = centerFold.clientHeight;
+  const overflow = Math.max(0, contentHeight - foldHeight);
   document.body.style.height = `${overflow + window.innerHeight}px`;
+  document.body.style.width = '100vw';
 }
 
-/**
- * on scroll, apply translateY(-scrollY) to all [data-fold-content] elements
- * via requestAnimationFrame for smooth performance.
- */
 function handleScroll() {
   requestAnimationFrame(() => {
     const scrollY = window.scrollY;
@@ -34,37 +32,116 @@ function handleScroll() {
 }
 
 function App() {
-  useEffect(() => {
-    window.addEventListener('resize', calcValues);
-    window.addEventListener('scroll', handleScroll);
-    calcValues();
+  const [viewMode, setViewMode] = useState('list');
+  const graphData = useMemo(() => buildEntryGraph(), []);
 
-    return () => {
-      window.removeEventListener('resize', calcValues);
-      window.removeEventListener('scroll', handleScroll);
-    };
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const view = params.get('view');
+    if (view === 'graph' || view === 'list' || view === 'columns') {
+      setViewMode(view);
+    }
   }, []);
 
+  const handleChangeView = (nextMode) => {
+    setViewMode(nextMode);
+    const url = new URL(window.location.href);
+    url.searchParams.set('view', nextMode);
+    window.history.replaceState({}, '', url);
+    window.scrollTo(0, 0);
+  };
+
+  useEffect(() => {
+    document.body.dataset.view = viewMode;
+  }, [viewMode]);
+
+  useEffect(() => {
+    if (viewMode !== 'list') {
+      document.body.style.height = '';
+      document.body.style.width = '';
+      return;
+    }
+
+    const onResize = () => calcValues();
+    const onScroll = () => handleScroll();
+
+    window.addEventListener('resize', onResize);
+    window.addEventListener('scroll', onScroll);
+
+    calcValues();
+    handleScroll();
+    const rafId = window.requestAnimationFrame(() => {
+      calcValues();
+      handleScroll();
+    });
+
+    return () => {
+      window.removeEventListener('resize', onResize);
+      window.removeEventListener('scroll', onScroll);
+      window.cancelAnimationFrame(rafId);
+    };
+  }, [viewMode]);
+
+  if (viewMode === 'graph') {
   return (
-    <div className={styles.all}>
-      <div className={styles.wrapper3d}>
-        <div className={`${styles.fold} ${styles.foldTop}`}>
-          <div className={styles.foldAlign}>
-            <div data-fold-content="true"><Content /></div>
-          </div>
+    <Fragment>
+      <div className={styles.graphShell}>
+        <EntryGraphView
+            nodes={graphData.nodes}
+            edges={graphData.edges}
+            introName={graphData.introName}
+            mode={viewMode}
+            onChangeMode={handleChangeView}
+          />
         </div>
-        <div className={styles.fold} id="center-fold">
-          <div className={styles.foldAlign}>
-            <div data-fold-content="true" id="center-content"><Content /></div>
-          </div>
+        <CubePrintSheet />
+      </Fragment>
+    );
+  }
+
+  if (viewMode === 'columns') {
+    return (
+      <Fragment>
+        <div className={styles.columnShell}>
+          <Content
+            viewMode={viewMode}
+            onChangeView={handleChangeView}
+            layout="columns"
+          />
         </div>
-        <div className={`${styles.fold} ${styles.foldBottom}`}>
-          <div className={styles.foldAlign}>
-            <div data-fold-content="true"><Content /></div>
+        <CubePrintSheet />
+        <MobiusStripPrintSheet />
+      </Fragment>
+    );
+  }
+
+  const foldContent = (
+    <Content viewMode={viewMode} onChangeView={handleChangeView} />
+  );
+
+  return (
+    <Fragment>
+      <div className={styles.all}>
+        <div className={styles.wrapper3d}>
+          <div className={`${styles.fold} ${styles.foldTop}`}>
+            <div className={styles.foldAlign}>
+              <div data-fold-content="true">{foldContent}</div>
+            </div>
+          </div>
+          <div className={styles.fold} id="center-fold">
+            <div className={styles.foldAlign}>
+              <div data-fold-content="true" id="center-content">{foldContent}</div>
+            </div>
+          </div>
+          <div className={`${styles.fold} ${styles.foldBottom}`}>
+            <div className={styles.foldAlign}>
+              <div data-fold-content="true">{foldContent}</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <CubePrintSheet />
+    </Fragment>
   );
 }
 

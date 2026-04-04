@@ -1,8 +1,86 @@
 [
   {
     "year": "2026",
+    "title": "Hermitian Matrix",
+    "category": "WIP",
+    "connections": ["work-self-adjoint-operator"],
+    "url": "www.placeholder.com",
+    "description": "My always-changing learning materials",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2026",
+    "title": "Convoy v1.5",
+    "category": "P",
+    "connections": ["work-self-adjoint-operator", "writing-node-types-in-convoy", "project-convoy"],
+    "url": "https://convoy-one.vercel.app",
+    "description": "Node-based data wrangling canvas environment",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2026",
+    "title": "CoupCats",
+    "category": "FR",
+    "connections": ["research-university-of-kentucky", "project-coupview"],
+    "url": "www.placeholder.com",
+    "description": "Interactive dashboard displaying illegal leader turnover globally via R ML models",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2026",
+    "title": "Physical SAO",
+    "category": "WIP",
+    "connections": ["work-self-adjoint-operator"],
+    "url": "www.placeholder.com",
+    "description": "Printable portfolio representations",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2026",
+    "title": "Realize",
+    "category": "WIP",
+    "connections": ["work-self-adjoint-operator"],
+    "url": "www.placeholder.com",
+    "description": "Frequency visualizations with Anime.js",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2026",
+    "title": "Conjure Code",
+    "category": "E",
+    "connections": ["work-self-adjoint-operator"],
+    "url": "www.placeholder.com",
+    "description": "Granular visualizations of imported repositories with aperture-style UX",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2026",
+    "title": "Daydream",
+    "category": "P",
+    "connections": [
+      "work-self-adjoint-operator",
+      "writing-local-host-software",
+      "project-envisiage",
+      "project-conjure-code"
+    ],
+    "url": "https://www.instagram.com/p/DWBz1qvFeLo/?img_index=1",
+    "description": "AI-generated Mermaid diagrams of inputted programs",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2026",
+    "title": "Envisiage",
+    "category": "P",
+    "connections": ["work-self-adjoint-operator", "writing-local-host-software"],
+    "url": "https://www.instagram.com/p/DVxA1a4jbaO/?img_index=1",
+    "description": "In-line AI assistant with anchored annotations and comments powered by Sonnet 4.5",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2026",
     "title": "Catalyst",
     "category": "P",
+    "connections": ["work-self-adjoint-operator"],
     "url": "https://www.instagram.com/p/DVFKglBj63U/?img_index=1",
     "description": "Photo editor for pointillist rendering",
     "descriptionLinks": []
@@ -11,6 +89,7 @@
     "year": "2026",
     "title": "CoupView",
     "category": "E",
+    "connections": ["work-self-adjoint-operator", "research-university-of-kentucky"],
     "url": "https://www.instagram.com/p/DU9cGIHD430/",
     "description": "Proof-of-concept dashboard displaying illegal leader turnover across the globe",
     "descriptionLinks": []
@@ -19,6 +98,7 @@
     "year": "2026",
     "title": "Convoy",
     "category": "P",
+    "connections": ["work-self-adjoint-operator", "writing-node-types-in-convoy"],
     "url": "https://www.instagram.com/p/DUtM0IdDqP7/?img_index=1",
     "description": "Node-based canvas UI editor for data wrangling and Datawrapper exporting",
     "descriptionLinks": []
@@ -27,6 +107,7 @@
     "year": "2026",
     "title": "Transparent",
     "category": "E",
+    "connections": ["work-self-adjoint-operator", "research-uc-san-diego"],
     "url": "https://www.instagram.com/p/DUre8sfDHxL/?img_index=1",
     "description": "Exploring how LLMs can both generate user interfaces and explain its associated code",
     "descriptionLinks": []
@@ -35,6 +116,7 @@
     "year": "2026",
     "title": "Form",
     "category": "E",
+    "connections": ["work-self-adjoint-operator"],
     "url": "https://www.instagram.com/p/DUgSxB1Dmmu/?img_index=1",
     "description": "Malleable notes app with Meridian ODIs and in-app feature generation with executable code snippets",
     "descriptionLinks": []
@@ -43,6 +125,7 @@
     "year": "2025",
     "title": "Palestra",
     "category": "P",
+    "connections": ["work-self-adjoint-operator"],
     "url": "https://www.instagram.com/p/DOT9EuXD7UZ/",
     "description": "Answering in-context questions about AI-generated codebases",
     "descriptionLinks": []
@@ -51,14 +134,16 @@
     "year": "2025",
     "title": "GraphQL Scraper",
     "category": "E",
+    "connections": ["research-uc-san-diego"],
     "url": "https://www.instagram.com/p/DOKMaynD8U5/",
     "description": "Leveraging Stargazer GitHub data to find user interactions in agentic coding repositories",
-    "descriptionLinks": []
+    "descriptionLinks": [""]
   },
   {
     "year": "2025",
     "title": "Rerank",
     "category": "P",
+    "connections": ["work-self-adjoint-operator"],
     "url": "https://www.instagram.com/p/DOKLyKbj-n4/?img_index=1",
     "description": "Revisiting an experiment on utilizing text summarization models for annotating textual data",
     "descriptionLinks": []
@@ -67,6 +152,7 @@
     "year": "2025",
     "title": "Perceptor",
     "category": "P",
+    "connections": ["work-self-adjoint-operator"],
     "url": "https://www.instagram.com/p/DOJZOb9DjZc/?img_index=1",
     "description": "Interactive CLI coding assistant that guides you through the process of developing software",
     "descriptionLinks": []
@@ -75,6 +161,7 @@
     "year": "2025",
     "title": "Scrutinize",
     "category": "P",
+    "connections": ["work-self-adjoint-operator"],
     "url": "https://www.instagram.com/p/DKvfqtFouqF/?img_index=1",
     "description": "Editing DeepSeek's essays with interactive human-centered annotation",
     "descriptionLinks": []
@@ -83,22 +170,25 @@
     "year": "2025",
     "title": "Specter",
     "category": "P",
+    "connections": ["work-self-adjoint-operator", "project-scrutinize"],
     "url": "https://www.instagram.com/p/DKvAULfvXVg/?img_index=1",
-    "description": "Ephemeral Deepseek-based AI assistant made for the writing process",
+    "description": "Ephemeral DeepSeek-based AI assistant made for the writing process",
     "descriptionLinks": []
   },
   {
     "year": "2025",
     "title": "Meta Measure",
     "category": "P",
+    "connections": ["work-self-adjoint-operator"],
     "url": "https://www.instagram.com/p/DKGRo-yozpb/?img_index=1",
-    "description": "Evaluating Claude Sonnet 3.7's ability to assess research ideas from across all disciplines",
+    "description": "Evaluating Claude 3.7 Sonnet's ability to assess research ideas from across all disciplines",
     "descriptionLinks": []
   },
   {
     "year": "2024",
     "title": "Help Supporters",
     "category": "FR",
+    "connections": ["research-xr-access"],
     "url": "https://arxiv.org/pdf/2403.08221",
     "description": "Exploring the design space of assistive technologies through a mixed-ability study with four prototypes",
     "descriptionLinks": []
@@ -107,6 +197,7 @@
     "year": "2023",
     "title": "SpaceNav",
     "category": "FR",
+    "connections": ["research-xr-access"],
     "url": "https://ceal.cs.columbia.edu/webnext/",
     "description": "Technology probe to evaluate integrating spatial browsing into desktop screen readers",
     "descriptionLinks": []

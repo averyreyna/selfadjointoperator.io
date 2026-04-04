@@ -1,16 +1,11 @@
-/**
- * renders a single <li> from an entry object.
- * handles projects and archive entries.
- *
- * Projects/Archive: { year?, title, url?, description, descriptionLinks }
- */
+import { useState } from 'react';
+import WipOverlay from './WipOverlay';
 
 function renderDescription(entry) {
   const description = entry.description || '';
   const descriptionLinks = entry.descriptionLinks || [];
 
-  // for entries with descriptionLinks (projects, archive):
-  // find text matches in description and replace with <a> tags
+  // same substring walk as intro interests: ordered links, first match per link in what’s left of the string.
   if (descriptionLinks.length > 0) {
     const parts = [];
     let remaining = description;
@@ -40,13 +35,24 @@ function renderDescription(entry) {
   return description;
 }
 
-function EntryItem({ entry }) {
+function EntryItem({ entry, type }) {
   const yearOrDate = entry.year || entry.date;
+  const [wipOpen, setWipOpen] = useState(false);
+  // writing list uses the same wip-style overlay as project rows tagged WIP (no external url yet).
+  const isWip = entry.category === 'WIP' || type === 'writing';
 
   return (
     <li>
+      {wipOpen && <WipOverlay onClose={() => setWipOpen(false)} />}
       {yearOrDate && <sup>{yearOrDate}</sup>}
-      {entry.url ? (
+      {isWip ? (
+        <button
+          onClick={() => setWipOpen(true)}
+          style={{ background: 'none', border: 'none', padding: 0, font: 'inherit', color: 'inherit', cursor: 'pointer', textDecoration: 'underline', textUnderlineOffset: '2px' }}
+        >
+          {entry.title}
+        </button>
+      ) : entry.url ? (
         <a href={entry.url} target="_blank" rel="noopener noreferrer">{entry.title}</a>
       ) : (
         entry.title && <span>{entry.title}</span>
