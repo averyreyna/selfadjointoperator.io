@@ -22,7 +22,7 @@
     "title": "CoupCats",
     "category": "FR",
     "connections": ["research-university-of-kentucky", "project-coupview"],
-    "url": "www.placeholder.com",
+    "url": "https://github.com/averyreyna/coupcats",
     "description": "Interactive dashboard displaying illegal leader turnover globally via R ML models",
     "descriptionLinks": []
   },
