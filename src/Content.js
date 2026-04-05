@@ -54,7 +54,9 @@ function IntroArticle() {
         {intro.bullets?.map((bullet, i) => {
           const sup = {
             Experiments: 'E',
+            'Feature Discussion': 'FD',
             'Field Research': 'FR',
+            'General Exploration': 'GE',
             'Internet Art': 'IA',
             Prototypes: 'P',
             'Work in Progress': 'WIP',

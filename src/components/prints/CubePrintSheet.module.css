@@ -179,7 +179,7 @@
   line-height: 1.2;
 }
 
-/* default sup metrics extend past the line box; faces use overflow:hidden so we tighten this. */
+/* default sup metrics extend past the line box; faces use overflow:hidden so we tighten this */
 .faceBodyList sup {
   font-size: 0.68em;
   line-height: 0;
@@ -297,7 +297,7 @@
   gap: 0.03in;
   align-items: stretch;
   text-align: left;
-  /* extra horizontal inset so year sups and wrapped lines stay inside overflow:hidden on the face. */
+  /* extra horizontal inset so year sups and wrapped lines stay inside overflow:hidden on the face */
   padding-left: 0.1in;
   padding-right: 0.09in;
 }

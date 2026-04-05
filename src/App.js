@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useMemo, useState } from 'react';
 import Content from './Content';
+import CursorTrail from './components/CursorTrail';
 import CubePrintSheet from './components/prints/CubePrintSheet';
 import MobiusStripPrintSheet from './components/prints/MobiusStripPrintSheet';
 import EntryGraphView from './views/EntryGraphView';
@@ -85,6 +86,7 @@ function App() {
   if (viewMode === 'graph') {
   return (
     <Fragment>
+      <CursorTrail />
       <div className={styles.graphShell}>
         <EntryGraphView
             nodes={graphData.nodes}
@@ -102,6 +104,7 @@ function App() {
   if (viewMode === 'columns') {
     return (
       <Fragment>
+        <CursorTrail />
         <div className={styles.columnShell}>
           <Content
             viewMode={viewMode}
@@ -121,6 +124,7 @@ function App() {
 
   return (
     <Fragment>
+      <CursorTrail />
       <div className={styles.all}>
         <div className={styles.wrapper3d}>
           <div className={`${styles.fold} ${styles.foldTop}`}>

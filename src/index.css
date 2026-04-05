@@ -8,7 +8,7 @@
   box-sizing: border-box;
 }
 
-/* hide scrollbars everywhere but keep scrolling (column panes, graph, etc. still overflow). */
+/* hide scrollbars everywhere but keep scrolling (column panes, graph, etc. still overflow) */
 html,
 body,
 * {
@@ -57,7 +57,7 @@ hr {
   box-sizing: border-box;
 }
 
-/* fold/list layout only: absolutely positioned name block: graph and columns views override this. */
+/* fold/list layout only: absolutely positioned name block: graph and columns views override this */
 .site-list h1 {
   position: absolute;
   bottom: 0;
@@ -95,6 +95,11 @@ ul li {
 ul li sup {
   margin-right: 8px;
   font-size: 0.6em;
+}
+
+/* category tag (second sup): keep tight to the em-dash; year sup keeps spacing after the year */
+ul li > sup:nth-of-type(2) {
+  margin-right: 0.2em;
 }
 
 h2 sup {
@@ -164,7 +169,7 @@ h2 sup {
     height: 40vh;
   }
 
-  /* content.module .namerow wins specificity; re-apply flex row so the toggle stays beside the name on small screens. */
+  /* content.module .namerow wins specificity; re-apply flex row so the toggle stays beside the name on small screens */
   .site-list header h1 {
     left: 0;
     right: 0;
@@ -204,6 +209,7 @@ h2 sup {
     padding: 0 !important;
     overflow: visible !important;
     background: #fff !important;
+    cursor: auto !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }

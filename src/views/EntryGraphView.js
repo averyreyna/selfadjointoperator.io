@@ -101,6 +101,7 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
   const [reducedMotion, setReducedMotion] = useState(false);
   const [hoverId, setHoverId] = useState(null);
   const [layoutVersion, setLayoutVersion] = useState(0);
+  const [showHint, setShowHint] = useState(() => window.innerWidth < 600);
 
   useLayoutEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -135,7 +136,7 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
     transformRef.current = transform;
   }, [transform]);
 
-  const graphWidth = Math.max(canvasWidth, 400);
+  const graphWidth = canvasWidth > 0 ? canvasWidth : 400;
   // force layout height tracks the visible canvas so nodes aren’t laid out in a taller box than you see.
   const graphHeight = Math.max(canvasHeight || 360, 360);
 
@@ -146,7 +147,7 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
       return;
     }
 
-    const gw = Math.max(canvasWidth, 400);
+    const gw = canvasWidth > 0 ? canvasWidth : 400;
     const gh =
       canvasHeight > 0
         ? Math.max(280, canvasHeight)
@@ -265,6 +266,7 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
       })
       .on('zoom', (event) => {
         setTransform(event.transform);
+        setShowHint(false);
       });
 
     zoomBehaviorRef.current = zoomFn;
@@ -296,12 +298,13 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
 
     const contentWidth = Math.max(1, maxX - minX);
     const contentHeight = Math.max(1, maxY - minY);
+    const fitPadding = surfaceWidth < 600 ? 48 : FIT_PADDING;
     const scale = Math.max(
-      0.35,
+      0.2,
       Math.min(
         1,
-        (surfaceWidth - FIT_PADDING * 2) / contentWidth,
-        (surfaceHeight - FIT_PADDING * 2) / contentHeight
+        (surfaceWidth - fitPadding * 2) / contentWidth,
+        (surfaceHeight - fitPadding * 2) / contentHeight
       )
     );
 
@@ -492,6 +495,11 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
             </div>
           ))}
         </aside>
+        {showHint && (
+          <div className={styles.touchHint} aria-hidden="true">
+            pinch to zoom · drag to pan
+          </div>
+        )}
       </section>
     </main>
   );

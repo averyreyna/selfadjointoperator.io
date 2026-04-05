@@ -18,7 +18,9 @@ import styles from './CubePrintSheet.module.css';
 
 const BULLET_SUP = {
   Experiments: 'E',
+  'Feature Discussion': 'FD',
   'Field Research': 'FR',
+  'General Exploration': 'GE',
   'Internet Art': 'IA',
   Prototypes: 'P',
   'Work in Progress': 'WIP',
@@ -26,7 +28,9 @@ const BULLET_SUP = {
 
 const CATEGORY_SUP = {
   E: 'E',
+  FD: 'FD',
   FR: 'FR',
+  GE: 'GE',
   IA: 'IA',
   P: 'P',
   WIP: 'WIP',

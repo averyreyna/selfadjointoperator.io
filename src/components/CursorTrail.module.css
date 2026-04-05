@@ -1,0 +1,40 @@
+.root {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10000;
+  overflow: hidden;
+}
+
+.particle {
+  position: fixed;
+  left: 0;
+  top: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(0.65rem, 1.1vw, 0.95rem);
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.42);
+  user-select: none;
+  transform: translate(-50%, -50%);
+}
+
+.cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  font-family: var(--font-heading);
+  font-size: clamp(0.85rem, 1.35vw, 1.1rem);
+  line-height: 1;
+  color: #fff;
+  user-select: none;
+  transform: translate(-50%, -50%);
+}
+
+@media print {
+  .root {
+    display: none !important;
+  }
+}

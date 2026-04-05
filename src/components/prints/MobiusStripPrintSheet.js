@@ -18,7 +18,9 @@ import styles from './MobiusStripPrintSheet.module.css';
 
 const CATEGORY_SUP = {
   E: 'E',
+  FD: 'FD',
   FR: 'FR',
+  GE: 'GE',
   IA: 'IA',
   P: 'P',
   WIP: 'WIP',

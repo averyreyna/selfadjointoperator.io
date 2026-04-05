@@ -190,6 +190,22 @@
   white-space: nowrap;
 }
 
+
+.touchHint {
+  position: absolute;
+  bottom: 56px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.4);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  z-index: 5;
+  transition: opacity 0.6s ease;
+  letter-spacing: 0.03em;
+}
+
 @media (max-width: 767px) {
   .page {
     padding: 14px 10px 16px;
@@ -229,15 +245,8 @@
     opacity: 0.88;
   }
 
-  .edgePath {
-    stroke-opacity: 0.24;
-  }
-
-  .edgePath[data-highlight='true'] {
-    stroke-opacity: 0.94;
-    stroke-width: 0.85;
-  }
 }
+
 
 @media (prefers-reduced-motion: reduce) {
   .node {
