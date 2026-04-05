@@ -2,7 +2,7 @@ function WorkEntry({ entry }) {
   return (
     <li>
       <sup>{entry.year}</sup>
-      {entry.company} — <i>{entry.role}</i>
+      {entry.company} — {entry.role}
     </li>
   );
 }
