@@ -201,5 +201,23 @@
     "url": "https://ceal.cs.columbia.edu/webnext/",
     "description": "Technology probe to evaluate integrating spatial browsing into desktop screen readers",
     "descriptionLinks": []
+  },
+  {
+    "year": "2022",
+    "title": "Digital Transformation",
+    "category": "FR",
+    "connections": ["work-various-companies"],
+    "url": "https://www.newamerica.org/insights/digital-transformation-opportunities-and-challenges-in-the-lower-mekong-region/",
+    "description": "Opportunities and challenges for the Lower Mekong Region",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2022",
+    "title": "Public Procurement",
+    "category": "FR",
+    "connections": ["work-various-companies"],
+    "url": "https://www.newamerica.org/insights/reconceptualizing-public-procurement/",
+    "description": "Recommendations across cross-sector innovation and collaboration",
+    "descriptionLinks": []
   }
 ]
