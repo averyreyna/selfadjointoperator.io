@@ -11,6 +11,7 @@
     ],
     "url": "www.placeholder.com",
     "description": "Discussing how GenAI experiments have informed my research interests",
+    "tableDescription": "GenAI experiments shaping research",
     "descriptionLinks": []
   },
   {
@@ -19,6 +20,7 @@
     "category": "WIP",
     "url": "www.placeholder.com",
     "description": "Development process of creating novel user interactions for a prototype",
+    "tableDescription": "Novel interactions for Convoy nodes",
     "descriptionLinks": []
   },
   {
@@ -27,6 +29,7 @@
     "category": "WIP",
     "url": "www.placeholder.com",
     "description": "Musings on ad-hoc software and developing your own app ecosystem",
+    "tableDescription": "Ad-hoc software and personal app stacks",
     "descriptionLinks": []
   }
 ]

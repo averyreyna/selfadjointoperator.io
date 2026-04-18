@@ -82,41 +82,55 @@ function truncateContext(text, maxLen = 48) {
   const s = (text || '').trim();
   if (!s) return '—';
   if (s.length <= maxLen) return s;
-  return `${s.slice(0, maxLen - 1)}…`;
+  return `${s.slice(0, maxLen - 3)}...`;
+}
+
+function archiveContextText(row) {
+  if (row.kind === 'work' || row.kind === 'research') {
+    const t = (row.entry.tableDescription || row.entry.role || '').trim();
+    return t || '—';
+  }
+  const oneLine = (row.entry.tableDescription || '').trim();
+  if (oneLine) return oneLine;
+  return truncateContext(row.entry.description, 120);
+}
+
+function archiveContextTitle(row) {
+  if (row.kind === 'work' || row.kind === 'research') {
+    return row.entry.role || undefined;
+  }
+  return row.entry.description || undefined;
 }
 
 function ProjectTitleCell({ entry, rowKind, onWipOpen }) {
   const isWip = entry.category === 'WIP' || rowKind === 'writing';
-  const btnStyle = {
-    background: 'none',
-    border: 'none',
-    padding: 0,
-    font: 'inherit',
-    color: 'inherit',
-    cursor: 'pointer',
-    textDecoration: 'underline',
-    textUnderlineOffset: '2px',
-  };
 
   return (
     <td className={styles.titleCell}>
-      {isWip ? (
-        <button type="button" onClick={onWipOpen} style={btnStyle}>
-          {entry.title}
-        </button>
-      ) : entry.url ? (
-        <a href={entry.url} target="_blank" rel="noopener noreferrer">
-          {entry.title}
-        </a>
-      ) : (
-        <span>{entry.title}</span>
-      )}
-      {entry.category && (
-        <>
-          {' '}
-          <sup className={styles.catSup}>{entry.category}</sup>
-        </>
-      )}
+      <span className={styles.cellClip}>
+        {isWip ? (
+          <button type="button" className={styles.titleTrigger} onClick={onWipOpen}>
+            {entry.title}
+          </button>
+        ) : entry.url ? (
+          <a
+            className={styles.titleTrigger}
+            href={entry.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {entry.title}
+          </a>
+        ) : (
+          <span>{entry.title}</span>
+        )}
+        {entry.category && (
+          <>
+            {' '}
+            <sup className={styles.catSup}>{entry.category}</sup>
+          </>
+        )}
+      </span>
     </td>
   );
 }
@@ -151,7 +165,7 @@ function EntryTable({ entries, type, caption, archive }) {
                   <tr key={`g${groupIdx}-r${rowIdx}-${row.kind}-${row.entry.company || row.entry.title || ''}`}>
                     <td className={styles.yearCell}>
                       <span
-                        className={styles.yearCellText}
+                        className={styles.cellClip}
                         style={{
                           opacity: archiveYearTextOpacity(rowIdx, n),
                         }}
@@ -161,8 +175,12 @@ function EntryTable({ entries, type, caption, archive }) {
                     </td>
                     {row.kind === 'work' || row.kind === 'research' ? (
                       <>
-                        <td className={styles.primaryCell}>{row.entry.company}</td>
-                        <td className={styles.contextCell}>{row.entry.role}</td>
+                        <td className={styles.primaryCell}>
+                          <span className={styles.cellClip}>{row.entry.company}</span>
+                        </td>
+                        <td className={styles.contextCell} title={archiveContextTitle(row)}>
+                          <span className={styles.cellClip}>{archiveContextText(row)}</span>
+                        </td>
                       </>
                     ) : (
                       <>
@@ -171,11 +189,8 @@ function EntryTable({ entries, type, caption, archive }) {
                           rowKind={row.kind}
                           onWipOpen={() => setWipOpen(true)}
                         />
-                        <td
-                          className={styles.contextCell}
-                          title={row.entry.description || undefined}
-                        >
-                          {truncateContext(row.entry.description, 120)}
+                        <td className={styles.contextCell} title={archiveContextTitle(row)}>
+                          <span className={styles.cellClip}>{archiveContextText(row)}</span>
                         </td>
                       </>
                     )}
@@ -214,11 +229,17 @@ function EntryTable({ entries, type, caption, archive }) {
                   <tr key={`${year}-${entry.company}-${rowIdx}`}>
                     {rowIdx === 0 ? (
                       <td className={styles.yearCell} rowSpan={items.length}>
-                        {year}
+                        <span className={styles.cellClip}>{year}</span>
                       </td>
                     ) : null}
-                    <td className={styles.primaryCell}>{entry.company}</td>
-                    <td className={styles.contextCell}>{entry.role}</td>
+                    <td className={styles.primaryCell}>
+                      <span className={styles.cellClip}>{entry.company}</span>
+                    </td>
+                    <td className={styles.contextCell} title={entry.role || undefined}>
+                      <span className={styles.cellClip}>
+                        {(entry.tableDescription || entry.role || '').trim() || '—'}
+                      </span>
+                    </td>
                   </tr>
                 ))
               )}
@@ -250,7 +271,7 @@ function EntryTable({ entries, type, caption, archive }) {
                 <tr key={`${year}-${entry.title}-${rowIdx}`}>
                   {rowIdx === 0 ? (
                     <td className={styles.yearCell} rowSpan={items.length}>
-                      {year}
+                      <span className={styles.cellClip}>{year}</span>
                     </td>
                   ) : null}
                   <ProjectTitleCell
@@ -258,11 +279,11 @@ function EntryTable({ entries, type, caption, archive }) {
                     rowKind={type}
                     onWipOpen={() => setWipOpen(true)}
                   />
-                  <td
-                    className={styles.contextCell}
-                    title={entry.description || undefined}
-                  >
-                    {truncateContext(entry.description)}
+                  <td className={styles.contextCell} title={entry.description || undefined}>
+                    <span className={styles.cellClip}>
+                      {(entry.tableDescription || '').trim() ||
+                        truncateContext(entry.description)}
+                    </span>
                   </td>
                 </tr>
               ))
