@@ -10,7 +10,7 @@
       "project-specter"
     ],
     "url": "www.placeholder.com",
-    "description": "Discussing how my GenAI experiments have informed my research interests",
+    "description": "Discussing how GenAI experiments have informed my research interests",
     "descriptionLinks": []
   },
   {
@@ -23,7 +23,7 @@
   },
   {
     "year": "2026",
-    "title": "Local(host) Software",
+    "title": "Localhost as Interface",
     "category": "WIP",
     "url": "www.placeholder.com",
     "description": "Musings on ad-hoc software and developing your own app ecosystem",

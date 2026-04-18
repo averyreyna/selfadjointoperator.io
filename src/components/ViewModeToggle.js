@@ -1,5 +1,5 @@
 import styles from './ViewModeToggle.module.css';
-import { Columns2, List, Network } from 'lucide-react';
+import { Columns2, List, Network, Table2 } from 'lucide-react';
 
 function ViewModeToggle({ mode, onChange }) {
   return (
@@ -21,6 +21,15 @@ function ViewModeToggle({ mode, onChange }) {
         onClick={() => onChange('columns')}
       >
         <Columns2 size={13} strokeWidth={2} aria-hidden="true" />
+      </button>
+      <button
+        type="button"
+        className={styles.iconButton}
+        aria-label="Table view"
+        aria-pressed={mode === 'table'}
+        onClick={() => onChange('table')}
+      >
+        <Table2 size={13} strokeWidth={2} aria-hidden="true" />
       </button>
       <button
         type="button"

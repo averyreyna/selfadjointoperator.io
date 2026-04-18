@@ -7,6 +7,7 @@ import interests from './data/interests.json';
 
 import Section from './components/Section';
 import EntryList from './components/EntryList';
+import EntryTable from './components/EntryTable';
 import Footer from './components/Footer';
 import ViewModeToggle from './components/ViewModeToggle';
 import styles from './Content.module.css';
@@ -121,6 +122,32 @@ function Content({ viewMode = 'list', onChangeView = () => {}, layout = 'list' }
               </Section>
               <Footer name={intro.name} footerLinks={intro.footerLinks} showInspiredBy={false} />
             </div>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  if (layout === 'table') {
+    return (
+      <main className={`${styles.tableMain} site-table`}>
+        <header className={styles.tableHeader}>
+          <h1 className={styles.columnsTitle}>
+            <span>{intro.name}</span>
+            <ViewModeToggle mode={viewMode} onChange={onChangeView} />
+          </h1>
+        </header>
+        <div className={styles.tableBody}>
+          <div className={styles.tableArchiveWrap}>
+            <EntryTable
+              archive={{
+                projects,
+                research,
+                work,
+                writing,
+              }}
+              caption="Portfolio archive"
+            />
           </div>
         </div>
       </main>

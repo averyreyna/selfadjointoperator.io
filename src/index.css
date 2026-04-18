@@ -49,7 +49,8 @@ hr {
 }
 
 .site-list section hr,
-.site-columns section hr {
+.site-columns section hr,
+.site-table section hr {
   width: calc(100% - 1.25rem);
   max-width: 100%;
   margin-left: 0;
@@ -160,6 +161,44 @@ h2 sup {
   padding-bottom: 1.5rem;
 }
 
+.site-table {
+  font-size: clamp(0.52rem, 1.25vw, 0.72rem);
+}
+
+.site-table h1 {
+  position: static;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  word-spacing: normal;
+}
+
+.site-table header {
+  height: auto;
+  margin-bottom: 0;
+  position: relative;
+}
+
+.site-table section,
+.site-table header {
+  margin-bottom: 0;
+}
+
+.site-table h2 {
+  margin-top: 0.55rem;
+  font-size: 0.88em;
+  letter-spacing: 0.05em;
+  opacity: 0.88;
+}
+
+.site-table section:first-of-type h2 {
+  margin-top: 0.28rem;
+}
+
+.site-table article ul li {
+  margin-bottom: 0.28rem;
+}
+
 @media (max-width: 767px) {
   body {
     font-size: 0.9rem;
@@ -190,6 +229,12 @@ h2 sup {
   }
 
   .site-columns header h1 {
+    width: 100%;
+    justify-content: space-between;
+    font-size: clamp(0.62rem, 3.6vw, 0.82rem);
+  }
+
+  .site-table header h1 {
     width: 100%;
     justify-content: space-between;
     font-size: clamp(0.62rem, 3.6vw, 0.82rem);

@@ -32,16 +32,34 @@ function handleScroll() {
   });
 }
 
+const VIEW_MODES = ['list', 'columns', 'table', 'graph'];
+
+function isValidViewParam(view) {
+  return view === 'graph' || view === 'list' || view === 'columns' || view === 'table';
+}
+
+function readInitialViewMode() {
+  const params = new URLSearchParams(window.location.search);
+  const fromUrl = params.get('view');
+  if (isValidViewParam(fromUrl)) {
+    return fromUrl;
+  }
+  return VIEW_MODES[Math.floor(Math.random() * VIEW_MODES.length)];
+}
+
 function App() {
-  const [viewMode, setViewMode] = useState('list');
+  const [viewMode, setViewMode] = useState(readInitialViewMode);
   const graphData = useMemo(() => buildEntryGraph(), []);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const view = params.get('view');
-    if (view === 'graph' || view === 'list' || view === 'columns') {
-      setViewMode(view);
+    if (!isValidViewParam(params.get('view'))) {
+      const url = new URL(window.location.href);
+      url.searchParams.set('view', viewMode);
+      window.history.replaceState({}, '', url);
     }
+    // Mount only: sync ?view= when missing; initial viewMode is from URL or random.
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- run once on load
   }, []);
 
   const handleChangeView = (nextMode) => {
@@ -110,6 +128,23 @@ function App() {
             viewMode={viewMode}
             onChangeView={handleChangeView}
             layout="columns"
+          />
+        </div>
+        <CubePrintSheet />
+        <MobiusStripPrintSheet />
+      </Fragment>
+    );
+  }
+
+  if (viewMode === 'table') {
+    return (
+      <Fragment>
+        <CursorTrail />
+        <div className={styles.tableShell}>
+          <Content
+            viewMode={viewMode}
+            onChangeView={handleChangeView}
+            layout="table"
           />
         </div>
         <CubePrintSheet />
