@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import WipOverlay from './WipOverlay';
+import { iconForEntry } from '../utils/entryIcons';
 import styles from './EntryTable.module.css';
 
 function parseYearSortKey(yearStr) {
@@ -102,6 +103,31 @@ function archiveContextTitle(row) {
   return row.entry.description || undefined;
 }
 
+function typeLabelForRow(rowKind, entry) {
+  if (entry.category === 'IA') return 'Internet Art';
+  if (entry.category === 'WIP') return 'Work in Progress';
+  if (rowKind === 'project') return 'Project';
+  if (rowKind === 'writing') return 'Writing';
+  if (rowKind === 'research') return 'Research';
+  if (rowKind === 'work') return 'Work';
+  return 'Entry';
+}
+
+function EntryTypeCell({ rowKind, entry }) {
+  const icon = iconForEntry({ category: entry.category, nodeType: rowKind });
+  const label = typeLabelForRow(rowKind, entry);
+  return (
+    <td className={styles.typeCell} title={label}>
+      <span className={styles.typeWrap}>
+        <span className={styles.typeIcon} aria-hidden="true">
+          {icon}
+        </span>
+        <span className={styles.cellClip}>{label}</span>
+      </span>
+    </td>
+  );
+}
+
 function ProjectTitleCell({ entry, rowKind, onWipOpen }) {
   const isWip = entry.category === 'WIP' || rowKind === 'writing';
 
@@ -123,12 +149,6 @@ function ProjectTitleCell({ entry, rowKind, onWipOpen }) {
           </a>
         ) : (
           <span>{entry.title}</span>
-        )}
-        {entry.category && (
-          <>
-            {' '}
-            <sup className={styles.catSup}>{entry.category}</sup>
-          </>
         )}
       </span>
     </td>
@@ -153,6 +173,7 @@ function EntryTable({ entries, type, caption, archive }) {
             <thead className={styles.srOnly}>
               <tr>
                 <th scope="col">Year</th>
+                <th scope="col">Type</th>
                 <th scope="col">Entry</th>
                 <th scope="col">Context</th>
               </tr>
@@ -173,6 +194,7 @@ function EntryTable({ entries, type, caption, archive }) {
                         {group.yearLabel}
                       </span>
                     </td>
+                    <EntryTypeCell rowKind={row.kind} entry={row.entry} />
                     {row.kind === 'work' || row.kind === 'research' ? (
                       <>
                         <td className={styles.primaryCell}>
@@ -219,6 +241,7 @@ function EntryTable({ entries, type, caption, archive }) {
             <thead className={styles.srOnly}>
               <tr>
                 <th scope="col">Year</th>
+                <th scope="col">Type</th>
                 <th scope="col">Organization</th>
                 <th scope="col">Role</th>
               </tr>
@@ -232,6 +255,7 @@ function EntryTable({ entries, type, caption, archive }) {
                         <span className={styles.cellClip}>{year}</span>
                       </td>
                     ) : null}
+                    <EntryTypeCell rowKind={type} entry={entry} />
                     <td className={styles.primaryCell}>
                       <span className={styles.cellClip}>{entry.company}</span>
                     </td>
@@ -261,6 +285,7 @@ function EntryTable({ entries, type, caption, archive }) {
           <thead className={styles.srOnly}>
             <tr>
               <th scope="col">Year</th>
+              <th scope="col">Type</th>
               <th scope="col">Title</th>
               <th scope="col">Notes</th>
             </tr>
@@ -274,6 +299,7 @@ function EntryTable({ entries, type, caption, archive }) {
                       <span className={styles.cellClip}>{year}</span>
                     </td>
                   ) : null}
+                  <EntryTypeCell rowKind={type} entry={entry} />
                   <ProjectTitleCell
                     entry={entry}
                     rowKind={type}

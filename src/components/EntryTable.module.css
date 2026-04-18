@@ -48,6 +48,7 @@
 }
 
 .yearCell,
+.typeCell,
 .primaryCell,
 .titleCell,
 .contextCell {
@@ -68,22 +69,38 @@
 }
 
 .yearCell {
-  width: 12%;
+  width: 11%;
   text-align: center;
 }
 
+.typeCell {
+  width: 19%;
+  text-align: left;
+}
+
+.typeWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  min-width: 0;
+}
+
+.typeIcon {
+  flex: 0 0 auto;
+}
+
 .titleCell {
-  width: 36%;
+  width: 30%;
   text-align: left;
 }
 
 .primaryCell {
-  width: 36%;
+  width: 30%;
   text-align: left;
 }
 
 .contextCell {
-  width: 52%;
+  width: 40%;
   text-align: left;
   font-weight: 400;
   opacity: 0.94;
@@ -91,6 +108,12 @@
 
 .table tbody tr:hover td {
   background-color: rgba(255, 255, 255, 0.045);
+}
+
+@media (hover: none), (pointer: coarse) {
+  .table tbody tr:hover td {
+    background-color: transparent;
+  }
 }
 
 .titleCell a {
@@ -109,28 +132,25 @@
   text-underline-offset: 2px;
 }
 
-.catSup {
-  font-size: 0.78em;
-  margin-left: 0.12em;
-  letter-spacing: 0.02em;
-  font-weight: 600;
-}
-
 @media (max-width: 767px) {
   .table {
     font-size: clamp(0.42rem, 2.9vw, 0.58rem);
   }
 
   .yearCell {
-    width: 16%;
+    width: 14%;
+  }
+
+  .typeCell {
+    width: 20%;
   }
 
   .titleCell,
   .primaryCell {
-    width: 34%;
+    width: 28%;
   }
 
   .contextCell {
-    width: 50%;
+    width: 38%;
   }
 }

@@ -7,6 +7,7 @@ import {
 } from 'react';
 import * as d3 from 'd3';
 import ViewModeToggle from '../components/ViewModeToggle';
+import { iconForEntry } from '../utils/entryIcons';
 import styles from './EntryGraphView.module.css';
 
 const COLLISION_R = 64;
@@ -59,18 +60,6 @@ function straightEdgePath(link) {
   return `M${x1},${y1}L${x2},${y2}`;
 }
 
-const NODE_CATEGORY_ICONS = {
-  IA: '◇',
-  WIP: '◌',
-};
-
-const NODE_TYPE_ICONS = {
-  project: '◆',
-  writing: '✦',
-  research: '⊕',
-  work: '▣'
-};
-
 const LEGEND_ENTRIES = [
   { icon: '◇', label: 'Internet Art' },
   { icon: '◆', label: 'Project' },
@@ -81,7 +70,7 @@ const LEGEND_ENTRIES = [
 ];
 
 function iconForNode(node) {
-  return NODE_CATEGORY_ICONS[node.category] || NODE_TYPE_ICONS[node.nodeType] || '·';
+  return iconForEntry(node);
 }
 
 function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
