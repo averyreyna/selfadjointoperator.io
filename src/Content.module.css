@@ -160,6 +160,34 @@
   padding: 0;
 }
 
+.tableCopyrightFooter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.35rem 0.75rem;
+  width: 100%;
+  max-width: min(102ch, 92vw);
+  margin: 0.85rem auto 0;
+  box-sizing: border-box;
+  font-family: var(--font-heading);
+  font-size: 0.62em;
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+  opacity: 0.88;
+}
+
+.tableCopyrightLeft {
+  text-align: left;
+  min-width: 0;
+}
+
+.tableCopyrightRight {
+  text-align: right;
+  margin-left: auto;
+  min-width: 0;
+}
+
 @media (max-width: 767px) {
   .columnMain {
     padding: 14px 10px 16px;

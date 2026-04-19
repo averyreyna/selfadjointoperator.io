@@ -11,6 +11,7 @@ import EntryTable from './components/EntryTable';
 import Footer from './components/Footer';
 import ViewModeToggle from './components/ViewModeToggle';
 import styles from './Content.module.css';
+import { SITE_LAST_UPDATED } from './siteMeta';
 
 // walks the string in link order; each link.text replaces its first remaining occurrence only (not a global regex).
 function renderTextWithLinks(text, links) {
@@ -129,6 +130,7 @@ function Content({ viewMode = 'list', onChangeView = () => {}, layout = 'list' }
   }
 
   if (layout === 'table') {
+    const year = new Date().getFullYear();
     return (
       <main className={`${styles.tableMain} site-table`}>
         <header className={styles.tableHeader}>
@@ -150,6 +152,14 @@ function Content({ viewMode = 'list', onChangeView = () => {}, layout = 'list' }
             />
           </div>
         </div>
+        <footer className={styles.tableCopyrightFooter} aria-label="Copyright">
+          <span className={styles.tableCopyrightLeft}>
+            © {year} {intro.name.toUpperCase()}
+          </span>
+          <span className={styles.tableCopyrightRight}>
+            LAST UPDATED: {SITE_LAST_UPDATED}
+          </span>
+        </footer>
       </main>
     );
   }

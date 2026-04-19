@@ -1,3 +1,5 @@
+import { SITE_LAST_UPDATED } from '../siteMeta';
+
 function Footer({ name, footerLinks, showInspiredBy = true }) {
   const year = new Date().getFullYear();
 
@@ -26,7 +28,7 @@ function Footer({ name, footerLinks, showInspiredBy = true }) {
           </a>
         </p>
       )}
-      <p className="copyright">LAST UPDATED: 2026-04</p>
+      <p className="copyright">LAST UPDATED: {SITE_LAST_UPDATED}</p>
     </footer>
   );
 }
