@@ -151,15 +151,15 @@ function Content({ viewMode = 'list', onChangeView = () => {}, layout = 'list' }
               caption="Portfolio archive"
             />
           </div>
+          <footer className={styles.tableCopyrightFooter} aria-label="Copyright">
+            <span className={styles.tableCopyrightLeft}>
+              © {year} {intro.name.toUpperCase()}
+            </span>
+            <span className={styles.tableCopyrightRight}>
+              LAST UPDATED: {SITE_LAST_UPDATED}
+            </span>
+          </footer>
         </div>
-        <footer className={styles.tableCopyrightFooter} aria-label="Copyright">
-          <span className={styles.tableCopyrightLeft}>
-            © {year} {intro.name.toUpperCase()}
-          </span>
-          <span className={styles.tableCopyrightRight}>
-            LAST UPDATED: {SITE_LAST_UPDATED}
-          </span>
-        </footer>
       </main>
     );
   }

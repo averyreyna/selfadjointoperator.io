@@ -167,8 +167,7 @@
   align-items: baseline;
   gap: 0.35rem 0.75rem;
   width: 100%;
-  max-width: min(102ch, 92vw);
-  margin: 0.85rem auto 0;
+  margin: 0.85rem 0 0;
   box-sizing: border-box;
   font-family: var(--font-heading);
   font-size: 0.62em;
