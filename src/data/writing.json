@@ -28,8 +28,48 @@
     "title": "Localhost as Interface",
     "category": "WIP",
     "url": "www.placeholder.com",
-    "description": "Musings on ad-hoc software and developing your own app ecosystem",
+    "description": "Musings on ad-hoc software and tunneling infrastructure",
     "tableDescription": "Ad-hoc software and personal app stacks",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2023",
+    "title": "The Threat of AI",
+    "category": "UW",
+    "connections": ["research-university-of-central-florida"],
+    "url": "www.placeholder.com",
+    "description": "Abstract harms of GenAI are already tangible.",
+    "tableDescription": "Abstract harms of GenAI are already tangible",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2022",
+    "title": "Interdisciplinary Social Science",
+    "category": "UW",
+    "connections": ["research-university-of-central-florida"],
+    "url": "www.placeholder.com",
+    "description": "Discussing the limits of quantitative methods",
+    "tableDescription": "Limits of quantitative methods",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2022",
+    "title": "Integrated Data",
+    "category": "UW",
+    "connections": ["work-various-companies"],
+    "url": "www.placeholder.com",
+    "description": "Details on the NYC Workforce Data Portal",
+    "tableDescription": "NYC Workforce Data Portal details",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2021",
+    "title": "Vaccination Efforts",
+    "category": "UW",
+    "connections": ["work-various-companies"],
+    "url": "www.placeholder.com",
+    "description": "Latin American pharmaceutical and vaccine reporting for CFR",
+    "tableDescription": "Pharmaceutical and vaccine reporting for CFR",
     "descriptionLinks": []
   }
 ]
