@@ -60,8 +60,8 @@ function IntroArticle() {
             'Field Research': 'FR',
             'General Exploration': 'GE',
             'Internet Art': 'IA',
-            'Undergraduate Writing': 'UW',
             Prototypes: 'P',
+            'Undergraduate Writing': 'UW',
             'Work in Progress': 'WIP',
           }[bullet];
           return (
