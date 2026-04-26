@@ -1,16 +1,6 @@
 [
   {
     "year": "2026",
-    "title": "Hermitian Matrix",
-    "category": "WIP",
-    "connections": ["work-self-adjoint-operator"],
-    "url": "www.placeholder.com",
-    "description": "My always-changing learning materials",
-    "tableDescription": "Living learning materials",
-    "descriptionLinks": []
-  },
-  {
-    "year": "2026",
     "title": "Convoy v1.5",
     "category": "P",
     "connections": ["work-self-adjoint-operator", "writing-node-types-in-convoy", "project-convoy"],
