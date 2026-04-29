@@ -1,5 +1,6 @@
 export const NODE_CATEGORY_ICONS = {
   IA: '◇',
+  IW: '▤',
   WIP: '◌'
 };
 

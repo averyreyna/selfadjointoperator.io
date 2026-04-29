@@ -59,6 +59,7 @@ function IntroArticle() {
             'Feature Discussion': 'FD',
             'Field Research': 'FR',
             'General Exploration': 'GE',
+            'Industry Work': 'IW',
             'Internet Art': 'IA',
             Prototypes: 'P',
             'Undergraduate Writing': 'UW',

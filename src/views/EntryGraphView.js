@@ -8,6 +8,7 @@ import {
 import * as d3 from 'd3';
 import ViewModeToggle from '../components/ViewModeToggle';
 import { iconForEntry } from '../utils/entryIcons';
+import { SITE_LAST_UPDATED } from '../siteMeta';
 import styles from './EntryGraphView.module.css';
 
 const COLLISION_R = 64;
@@ -62,6 +63,7 @@ function straightEdgePath(link) {
 
 const LEGEND_ENTRIES = [
   { icon: '◇', label: 'Internet Art' },
+  { icon: '▤', label: 'Industry Work' },
   { icon: '◆', label: 'Project' },
   { icon: '⊕', label: 'Research' },
   { icon: '▣', label: 'Work' },
@@ -379,6 +381,8 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
     return false;
   };
 
+  const copyrightYear = new Date().getFullYear();
+
   return (
     <main className={styles.page}>
       <header className={styles.header}>
@@ -476,6 +480,14 @@ function EntryGraphView({ nodes, edges, introName, mode, onChangeMode }) {
             </div>
           </div>
         </div>
+        <aside className={styles.graphSiteMeta} aria-label="Copyright and last updated">
+          <p className={styles.graphSiteMetaLine}>
+            © {copyrightYear} {introName.toUpperCase()}
+          </p>
+          <p className={styles.graphSiteMetaLine}>
+            LAST UPDATED: {SITE_LAST_UPDATED}
+          </p>
+        </aside>
         <aside className={styles.legend} aria-label="Node type key">
           {LEGEND_ENTRIES.map(({ icon, label }) => (
             <div key={label} className={styles.legendRow}>

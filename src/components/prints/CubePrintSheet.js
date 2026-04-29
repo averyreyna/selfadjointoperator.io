@@ -21,6 +21,7 @@ const BULLET_SUP = {
   'Feature Discussion': 'FD',
   'Field Research': 'FR',
   'General Exploration': 'GE',
+  'Industry Work': 'IW',
   'Internet Art': 'IA',
   Prototypes: 'P',
   'Work in Progress': 'WIP',
@@ -32,6 +33,7 @@ const CATEGORY_SUP = {
   FR: 'FR',
   GE: 'GE',
   IA: 'IA',
+  IW: 'IW',
   P: 'P',
   WIP: 'WIP',
 };

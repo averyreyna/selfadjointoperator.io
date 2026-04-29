@@ -24,11 +24,20 @@
     "descriptionLinks": []
   },
   {
+    "year": "2026",
+    "title": "Localhost as Interface",
+    "category": "WIP",
+    "url": "www.placeholder.com",
+    "description": "Musings on ephemeral software and tunneling infrastructure",
+    "tableDescription": "",
+    "descriptionLinks": []
+  },
+  {
     "year": "2023",
     "title": "The Threat of AI",
     "category": "UW",
     "connections": ["research-university-of-central-florida"],
-    "url": "www.placeholder.com",
+    "url": "https://www.complexvectorspace.io/posts/the-threat-of-ai/",
     "description": "Abstract harms of GenAI are already tangible",
     "tableDescription": "Abstract harms of GenAI are already tangible",
     "descriptionLinks": []
@@ -38,7 +47,7 @@
     "title": "Quantitative Research",
     "category": "UW",
     "connections": ["research-university-of-central-florida"],
-    "url": "www.placeholder.com",
+    "url": "https://www.complexvectorspace.io/posts/interdisciplinary-social-science/",
     "description": "Discussing the limits and trends in interdisciplinary social science",
     "tableDescription": "Limits of quantitative methods",
     "descriptionLinks": []
@@ -48,7 +57,7 @@
     "title": "Integrated Data",
     "category": "UW",
     "connections": ["work-various-companies"],
-    "url": "www.placeholder.com",
+    "url": "https://www.complexvectorspace.io/posts/integrated-data-in-the-us/",
     "description": "Case study on the NYC Workforce Data Portal",
     "tableDescription": "NYC Workforce Data Portal details",
     "descriptionLinks": []
@@ -58,7 +67,7 @@
     "title": "Vaccination Efforts",
     "category": "UW",
     "connections": ["work-various-companies"],
-    "url": "www.placeholder.com",
+    "url": "https://www.complexvectorspace.io/posts/what-to-know/",
     "description": "Latin American pharmaceutical and vaccine reporting for CFR",
     "tableDescription": "Pharmaceutical and vaccine reporting for CFR",
     "descriptionLinks": []

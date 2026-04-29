@@ -22,6 +22,7 @@ const CATEGORY_SUP = {
   FR: 'FR',
   GE: 'GE',
   IA: 'IA',
+  IW: 'IW',
   P: 'P',
   WIP: 'WIP',
 };

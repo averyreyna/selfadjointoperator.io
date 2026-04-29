@@ -126,6 +126,16 @@
   },
   {
     "year": "2025",
+    "title": "Metrics Playground",
+    "category": "IW",
+    "connections": ["work-capital-one"],
+    "url": "",
+    "description": "Teaching Cyber D&M engineers about agentic coding via a Copilot-built testing environment",
+    "tableDescription": "",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2025",
     "title": "Palestra",
     "category": "P",
     "connections": ["work-self-adjoint-operator"],
@@ -186,6 +196,16 @@
   },
   {
     "year": "2025",
+    "title": "Admin Metrics Dashboard",
+    "category": "IW",
+    "connections": ["work-capital-one"],
+    "url": "",
+    "description": "In-house heartbeat monitoring solution to replace Grafana dashboards",
+    "tableDescription": "In-house heartbeat monitoring solution to replace Grafana dashboards",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2025",
     "title": "Meta Measure",
     "category": "P",
     "connections": ["work-self-adjoint-operator"],
@@ -196,12 +216,42 @@
   },
   {
     "year": "2024",
+    "title": "ILM Portal",
+    "category": "IW",
+    "connections": ["work-capital-one"],
+    "url": "",
+    "description": "Designing a lifecycle for custom authorization plugins across Cyber Tech teams",
+    "tableDescription": "Designing a lifecycle for custom authorization plugins",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2024",
     "title": "Help Supporters",
     "category": "FR",
     "connections": ["research-xr-access"],
     "url": "https://arxiv.org/pdf/2403.08221",
     "description": "Exploring the design space of assistive technologies through a mixed-ability study with four prototypes",
     "tableDescription": "Assistive tech via mixed-ability study",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2024",
+    "title": "File Upload Tool",
+    "category": "IW",
+    "connections": ["work-capital-one"],
+    "url": "",
+    "description": "Upgrading a custom authorization plugin for IAM Data Analytics",
+    "tableDescription": "",
+    "descriptionLinks": []
+  },
+  {
+    "year": "2024",
+    "title": "Penetration Test Checklists",
+    "category": "IW",
+    "connections": ["work-capital-one"],
+    "url": "",
+    "description": "Rendering editable spreadsheets of simulated cyberattacks",
+    "tableDescription": "Rendering simualted cyberattacks",
     "descriptionLinks": []
   },
   {

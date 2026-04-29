@@ -105,6 +105,7 @@ function archiveContextTitle(row) {
 
 function typeLabelForRow(rowKind, entry) {
   if (entry.category === 'IA') return 'Internet Art';
+  if (entry.category === 'IW') return 'Industry Work';
   if (entry.category === 'WIP') return 'Work in Progress';
   if (entry.category === 'UW') return 'Undergraduate Writing';
   if (rowKind === 'project') return 'Project';
