@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import WipOverlay from './WipOverlay';
+import UnavailableOverlay from './UnavailableOverlay';
 
 function renderDescription(entry) {
   const description = entry.description || '';
@@ -38,16 +39,26 @@ function renderDescription(entry) {
 function EntryItem({ entry, type }) {
   const yearOrDate = entry.year || entry.date;
   const [wipOpen, setWipOpen] = useState(false);
+  const [unavailableOpen, setUnavailableOpen] = useState(false);
   // writing list uses the same wip-style overlay as project rows tagged WIP (no external url yet).
   const isWip = entry.category === 'WIP' || type === 'writing';
+  const isUnavailable = entry.category === 'IW';
 
   return (
     <li>
       {wipOpen && <WipOverlay onClose={() => setWipOpen(false)} />}
+      {unavailableOpen && <UnavailableOverlay onClose={() => setUnavailableOpen(false)} />}
       {yearOrDate && <sup>{yearOrDate}</sup>}
       {isWip ? (
         <button
           onClick={() => setWipOpen(true)}
+          style={{ background: 'none', border: 'none', padding: 0, font: 'inherit', color: 'inherit', cursor: 'pointer', textDecoration: 'underline', textUnderlineOffset: '2px' }}
+        >
+          {entry.title}
+        </button>
+      ) : isUnavailable ? (
+        <button
+          onClick={() => setUnavailableOpen(true)}
           style={{ background: 'none', border: 'none', padding: 0, font: 'inherit', color: 'inherit', cursor: 'pointer', textDecoration: 'underline', textUnderlineOffset: '2px' }}
         >
           {entry.title}

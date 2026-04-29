@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import WipOverlay from './WipOverlay';
+import UnavailableOverlay from './UnavailableOverlay';
 import { iconForEntry } from '../utils/entryIcons';
 import styles from './EntryTable.module.css';
 
@@ -130,14 +131,19 @@ function EntryTypeCell({ rowKind, entry }) {
   );
 }
 
-function ProjectTitleCell({ entry, rowKind, onWipOpen }) {
+function ProjectTitleCell({ entry, rowKind, onWipOpen, onUnavailableOpen }) {
   const isWip = entry.category === 'WIP' || rowKind === 'writing';
+  const isUnavailable = entry.category === 'IW';
 
   return (
     <td className={styles.titleCell}>
       <span className={styles.cellClip}>
         {isWip ? (
           <button type="button" className={styles.titleTrigger} onClick={onWipOpen}>
+            {entry.title}
+          </button>
+        ) : isUnavailable ? (
+          <button type="button" className={styles.titleTrigger} onClick={onUnavailableOpen}>
             {entry.title}
           </button>
         ) : entry.url ? (
@@ -159,6 +165,7 @@ function ProjectTitleCell({ entry, rowKind, onWipOpen }) {
 
 function EntryTable({ entries, type, caption, archive }) {
   const [wipOpen, setWipOpen] = useState(false);
+  const [unavailableOpen, setUnavailableOpen] = useState(false);
 
   if (archive) {
     const archiveRows = buildArchiveRows(archive);
@@ -169,6 +176,7 @@ function EntryTable({ entries, type, caption, archive }) {
     return (
       <article>
         {wipOpen && <WipOverlay onClose={() => setWipOpen(false)} />}
+        {unavailableOpen && <UnavailableOverlay onClose={() => setUnavailableOpen(false)} />}
         <div className={`${styles.tableWrap} ${styles.tableWrapArchive}`}>
           <table className={styles.table}>
             <caption className={styles.captionHidden}>{caption}</caption>
@@ -212,6 +220,7 @@ function EntryTable({ entries, type, caption, archive }) {
                           entry={row.entry}
                           rowKind={row.kind}
                           onWipOpen={() => setWipOpen(true)}
+                          onUnavailableOpen={() => setUnavailableOpen(true)}
                         />
                         <td className={styles.contextCell} title={archiveContextTitle(row)}>
                           <span className={styles.cellClip}>{archiveContextText(row)}</span>
@@ -281,6 +290,7 @@ function EntryTable({ entries, type, caption, archive }) {
   return (
     <article>
       {wipOpen && <WipOverlay onClose={() => setWipOpen(false)} />}
+      {unavailableOpen && <UnavailableOverlay onClose={() => setUnavailableOpen(false)} />}
       <div className={styles.tableWrap}>
         <table className={styles.table}>
           <caption className={styles.captionHidden}>{caption}</caption>
@@ -306,6 +316,7 @@ function EntryTable({ entries, type, caption, archive }) {
                     entry={entry}
                     rowKind={type}
                     onWipOpen={() => setWipOpen(true)}
+                    onUnavailableOpen={() => setUnavailableOpen(true)}
                   />
                   <td className={styles.contextCell} title={entry.description || undefined}>
                     <span className={styles.cellClip}>
