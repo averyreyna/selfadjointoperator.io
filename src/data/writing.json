@@ -1,35 +1,10 @@
 [
   {
     "year": "2026",
-    "title": "Prototyping with LLMs",
-    "category": "WIP",
-    "connections": [
-      "project-meta-measure",
-      "project-scrutinize",
-      "work-capital-one",
-      "project-specter"
-    ],
-    "url": "www.placeholder.com",
-    "description": "Discussing how GenAI experiments have informed my research interests",
-    "tableDescription": "GenAI experiments shaping research",
-    "descriptionLinks": []
-  },
-  {
-    "year": "2026",
-    "title": "Node Types in Convoy",
-    "category": "WIP",
-    "url": "www.placeholder.com",
-    "description": "Development process of creating novel user interactions for a prototype",
+    "title": "DnD Not Harmful",
+    "category": "FD",
+    "description": "Discussing Convoy v1.5 and thoughts on drag-and-drop UX",
     "tableDescription": "Novel interactions for Convoy nodes",
-    "descriptionLinks": []
-  },
-  {
-    "year": "2026",
-    "title": "Localhost as Interface",
-    "category": "WIP",
-    "url": "www.placeholder.com",
-    "description": "Musings on ephemeral software and tunneling infrastructure",
-    "tableDescription": "Ephemeral software and tunneling infrastructure",
     "descriptionLinks": []
   },
   {

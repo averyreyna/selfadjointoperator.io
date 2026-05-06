@@ -40,8 +40,7 @@ function EntryItem({ entry, type }) {
   const yearOrDate = entry.year || entry.date;
   const [wipOpen, setWipOpen] = useState(false);
   const [unavailableOpen, setUnavailableOpen] = useState(false);
-  // writing list uses the same wip-style overlay as project rows tagged WIP (no external url yet).
-  const isWip = entry.category === 'WIP' || type === 'writing';
+  const isWip = entry.category === 'WIP';
   const isUnavailable = entry.category === 'IW';
 
   return (

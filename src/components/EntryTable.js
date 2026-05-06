@@ -132,7 +132,7 @@ function EntryTypeCell({ rowKind, entry }) {
 }
 
 function ProjectTitleCell({ entry, rowKind, onWipOpen, onUnavailableOpen }) {
-  const isWip = entry.category === 'WIP' || rowKind === 'writing';
+  const isWip = entry.category === 'WIP';
   const isUnavailable = entry.category === 'IW';
 
   return (
