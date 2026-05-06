@@ -3,6 +3,8 @@
     "year": "2026",
     "title": "DnD Not Harmful",
     "category": "FD",
+    "connections": ["research-uc-san-diego"],
+    "url": "https://www.complexvectorspace.io/posts/drag-and-drop-not-considered-harmful/",
     "description": "Discussing Convoy v1.5 and thoughts on drag-and-drop UX",
     "tableDescription": "Novel interactions for Convoy nodes",
     "descriptionLinks": []
